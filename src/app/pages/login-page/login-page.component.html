@@ -1,0 +1,13 @@
+<div class="container" *ngIf="isNew; else signin">
+  <app-sign-up></app-sign-up>
+  <button class="button" (click)="toggle()">Create new account</button>
+</div>
+
+<ng-template #signin>
+
+  <div class="container">
+    <app-sign-in></app-sign-in>
+    <button class="button" (click)="toggle()">Sign In</button>
+  </div>
+
+</ng-template>
