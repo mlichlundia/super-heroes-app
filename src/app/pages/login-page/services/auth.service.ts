@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { catchError, map, Observable, Subject, tap, throwError } from 'rxjs';
 import {
   BASE_URL_GET_USER,
   BASE_URL_SIGNIN,
@@ -15,6 +15,8 @@ import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  errors$: Subject<string> = new Subject<string>();
+
   constructor(private http: HttpClient) {}
 
   signup(user: User): Observable<ServerAuthResponse | null> {
@@ -28,7 +30,7 @@ export class AuthService {
       .pipe(tap(this.setToken));
   }
 
-  signin(user: User): Observable<ServerAuthResponse | null> {
+  signin(user: User): Observable<any> {
     user.returnSecureToken = true;
 
     return this.http
@@ -36,7 +38,7 @@ export class AuthService {
         `${BASE_URL_SIGNIN}${environment.apiKey}`,
         user
       )
-      .pipe(tap(this.setToken));
+      .pipe(tap(this.setToken), catchError(this.handleError.bind(this)));
   }
 
   logout() {
@@ -62,5 +64,23 @@ export class AuthService {
     } else {
       localStorage.clear();
     }
+  }
+
+  handleError(error: HttpErrorResponse) {
+    const { message } = error.error.error;
+    console.log(error);
+    switch (message) {
+      case 'INVALID_EMAIL':
+        this.errors$.next('Invalid email');
+        break;
+      case 'INVALID_PASSWORD':
+        this.errors$.next('Invalid password');
+        break;
+      case 'EMAIL_NOT_FOUND':
+        this.errors$.next("This email doesn't exist");
+        break;
+    }
+
+    return throwError(error);
   }
 }
