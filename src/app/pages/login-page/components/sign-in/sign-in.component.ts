@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 import { EmailValidator } from '../../validators/email.validator';
 import { PasswordValidator } from '../../validators/password.validator';
 
@@ -12,7 +13,7 @@ import { PasswordValidator } from '../../validators/password.validator';
 export class SignInComponent implements OnInit {
   form!: FormGroup;
 
-  constructor() {}
+  constructor(private auth: AuthService) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -37,6 +38,8 @@ export class SignInComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    console.log(this.form);
+
+    this.auth.signin(this.form.value).subscribe((res) => console.log(res));
+    this.form.reset();
   }
 }
