@@ -4,6 +4,7 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -15,7 +16,7 @@ import {
 export class LoginPageComponent implements OnInit {
   isNew = false;
 
-  constructor() {}
+  constructor(public auth: AuthService) {}
 
   ngOnInit(): void {}
 

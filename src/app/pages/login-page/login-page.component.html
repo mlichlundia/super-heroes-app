@@ -8,6 +8,9 @@
 
   <div class="container">
     <h2>sign in</h2>
+    <div class="message_error" *ngIf="auth.errors$ | async as error">
+      <span>ⓧ</span><small>{{error}}</small>
+    </div>
     <app-sign-in></app-sign-in>
     <button class="button button_sec" (click)="toggle()">Create new
       account</button>
