@@ -18,7 +18,7 @@ import { PasswordValidator } from '../../validators/password.validator';
 })
 export class SignInComponent implements OnInit, OnDestroy {
   form!: FormGroup;
-  sub!: Subscription;
+  sub?: Subscription;
 
   constructor(private auth: AuthService) {}
 
@@ -42,7 +42,9 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
   submit() {

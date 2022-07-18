@@ -20,7 +20,7 @@ import { Subscription } from 'rxjs';
 export class SignUpComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   userPattern = '[a-zA-Z -]*';
-  sub!: Subscription;
+  sub?: Subscription;
 
   constructor(
     private emailValidator: EmailValidator,
@@ -57,7 +57,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
   submit() {
