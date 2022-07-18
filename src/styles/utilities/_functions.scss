@@ -1,0 +1,37 @@
+@use "sass:math";
+@use "sass:map";
+@use "sass:list";
+
+@use "../utilities/variables" as *;
+
+@function to-num($value) {
+  @if type-of($value) == "number" {
+    @return $value;
+  } @else {
+    @warn 'This #{$value} shouldn\'t contain "px" in it';
+  }
+}
+
+@function rem($value) {
+  @return #{math.div(to-num($value), $font-base)}rem;
+}
+
+@function font($value) {
+  @if list.index($fonts, $value) {
+    @return var(--font-size-#{$value});
+  } @else {
+    @warn 'This #{$value} doesn\'t exist';
+  }
+}
+
+@function color($value) {
+  @if map.get($colors, $value) {
+    @return var(--color-#{$value});
+  } @else {
+    @warn 'This #{$value} doesn\'t exist';
+  }
+}
+
+@function get-breakpoint($value) {
+  @return map.get($breakpoints, $value);
+}

@@ -1,14 +1,27 @@
-input {
-  &.ng-invalid.ng-touched {
-    border: 1px solid red;
-  }
+@use "../../../styles/main.scss" as *;
 
-  &.ng-valid.ng-touched {
-    border: 1px solid green;
-  }
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0a0a0a;
+  background-image: url(/assets/login-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
-.validation__error {
-  display: block;
-  color: red;
+.container {
+  backdrop-filter: blur(rem(16));
+}
+
+h2 {
+  text-align: center;
+}
+
+.button {
+  margin: auto;
 }

@@ -1,0 +1,44 @@
+@use "../utilities/variables" as *;
+@use "../utilities/functions" as *;
+
+@mixin generate-fonts() {
+  @each $font in $fonts {
+    --font-size-#{$font}: #{rem($font)};
+  }
+}
+
+@mixin generate-colors() {
+  @each $key, $value in $colors {
+    --color-#{$key}: #{$value};
+  }
+}
+
+@mixin generate-breakpoints() {
+  @each $key, $value in $breakpoints {
+    --breakpoint-#{$key}: #{$value};
+  }
+}
+
+@mixin screen-width {
+  font-size: 3.73831776vw;
+
+  @media screen and (min-width: get-breakpoint(s)) {
+    font-size: 3.73831776vw;
+  }
+
+  @media screen and (min-width: get-breakpoint(m)) {
+    font-size: 2.5vw;
+  }
+
+  @media screen and (min-width: get-breakpoint(l)) {
+    font-size: 1.61290323vw;
+  }
+
+  @media screen and (min-width: get-breakpoint(xl)) {
+    font-size: 1.11111111111111vw;
+  }
+
+  @media screen and (min-width: get-breakpoint(xxl)) {
+    font-size: 0.8333333333333vw;
+  }
+}

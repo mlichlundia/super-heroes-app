@@ -1,0 +1,35 @@
+@use "../utilities" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,400&display=swap");
+
+* {
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+h1,
+h2,
+h4 {
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+h1 {
+  font-size: font(32);
+}
+
+h2 {
+  font-size: font(24);
+}
+
+h3 {
+  font-size: font(20);
+}
+
+p {
+  font-size: font(16);
+  line-height: 170%;
+}
+
+small {
+  font-size: font(14);
+}

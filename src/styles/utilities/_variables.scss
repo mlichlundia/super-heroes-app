@@ -1,0 +1,20 @@
+$font-base: 16;
+$fonts: (32, 24, 20, 16, 14);
+
+$colors: (
+  light: rgb(246, 249, 249),
+  light-sec: rgb(223, 235, 235),
+  dark: rgb(53 60 67),
+  dark-sec: rgba(44, 55, 55, 0.72),
+  primary: rgb(41 116 114),
+  primary-sec: rgb(31, 89, 87),
+  error: #e10e32,
+);
+
+$breakpoints: (
+  s: 482px,
+  m: 640px,
+  l: 992px,
+  xl: 1440px,
+  xxl: 1920px,
+);
