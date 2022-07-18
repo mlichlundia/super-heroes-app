@@ -60,6 +60,7 @@
     </div>
   </div>
 
-  <button type="submit">submit</button>
+  <button type="submit" (click)="submit()"
+    [disabled]="form.invalid">submit</button>
 
 </form>
