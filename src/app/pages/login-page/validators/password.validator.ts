@@ -10,6 +10,10 @@ export class PasswordValidator {
   static containCapitalLetter(
     control: FormControl
   ): ValidatorReturnValue | null {
+    if (!control.value) {
+      return null;
+    }
+
     const capitalLetters = control.value.split('').filter((symbol: string) => {
       if (symbol.charCodeAt(0) > 64 && symbol.charCodeAt(0) < 91) {
         return true;
@@ -22,6 +26,10 @@ export class PasswordValidator {
   }
 
   static allowedOneNumber(control: FormControl): ValidatorReturnValue | null {
+    if (!control.value) {
+      return null;
+    }
+
     const numbers = control.value.split('').filter((num: string) => {
       if (num.charCodeAt(0) > 47 && num.charCodeAt(0) < 58) {
         return true;
@@ -36,6 +44,10 @@ export class PasswordValidator {
   static allowedSpecialSymbols(
     control: FormControl
   ): ValidatorReturnValue | null {
+    if (!control.value) {
+      return null;
+    }
+
     let isValid = false;
 
     const symbols = ['$', '%', '.', '&', '!'];
@@ -49,6 +61,10 @@ export class PasswordValidator {
 
   static notSame(username?: string, email?: string): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
+      if (!control.value) {
+        return null;
+      }
+
       const coincidence =
         control.value.indexOf(username) === -1 &&
         control.value.indexOf(email) === -1;

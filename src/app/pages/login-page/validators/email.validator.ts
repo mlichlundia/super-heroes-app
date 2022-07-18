@@ -17,6 +17,10 @@ export class EmailValidator {
   constructor(private http: HttpClient) {}
 
   static allowedDottCount(control: FormControl): ValidatorReturnValue | null {
+    if (!control.value) {
+      return null;
+    }
+
     let isValid = false;
 
     const lastIndex = control.value.indexOf('@');
@@ -35,6 +39,10 @@ export class EmailValidator {
   }
 
   static allowedDomains(control: FormControl): ValidatorReturnValue | null {
+    if (!control.value) {
+      return null;
+    }
+
     let isValid = false;
 
     const domains = ['.com', '.net', '.org', '.co', '.us'];
@@ -48,6 +56,10 @@ export class EmailValidator {
   }
 
   static allowedLastLength(control: FormControl): ValidatorReturnValue | null {
+    if (!control.value) {
+      return null;
+    }
+
     let isValid = false;
 
     const firstIndex = control.value.indexOf('@');
