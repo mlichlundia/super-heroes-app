@@ -1,9 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
+import {
+  AbstractControl,
+  FormControl,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
+import { map, Observable } from 'rxjs';
+import { BASE_URL_GET_USER } from 'src/app/constants';
+import { UserCheckResponse } from 'src/app/interfaces/serverResponse';
+import { environment } from 'src/environments/environment';
 import { ValidatorReturnValue } from '../../../interfaces/validatorReturnValue';
 
+@Injectable({ providedIn: 'root' })
 export class EmailValidator {
+  constructor(private http: HttpClient) {}
+
   static allowedDottCount(control: FormControl): ValidatorReturnValue | null {
     let isValid = false;
 
@@ -44,5 +56,18 @@ export class EmailValidator {
     isValid = toCheck.length > 5 ? false : true;
 
     return isValid ? { allowedLastLength: true } : null;
+  }
+
+  isUnique(control: AbstractControl): Observable<ValidationErrors | null> {
+    return this.http
+      .post<UserCheckResponse>(`${BASE_URL_GET_USER}${environment.apiKey}`, {
+        identifier: control.value,
+        continueUri: 'http://localhost:4200/',
+      })
+      .pipe(
+        map((res) => {
+          return res.registered ? { isUnique: true } : null;
+        })
+      );
   }
 }

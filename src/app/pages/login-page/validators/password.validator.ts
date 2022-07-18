@@ -1,4 +1,9 @@
-import { FormControl } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
 import { ValidatorReturnValue } from 'src/app/interfaces/validatorReturnValue';
 
 export class PasswordValidator {
@@ -40,5 +45,15 @@ export class PasswordValidator {
     isValid = validSymbols.length ? true : false;
 
     return isValid ? null : { allowedSpecialSymbols: true };
+  }
+
+  static notSame(username?: string, email?: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const coincidence =
+        control.value.indexOf(username) === -1 &&
+        control.value.indexOf(email) === -1;
+
+      return coincidence ? null : { notSame: true };
+    };
   }
 }
