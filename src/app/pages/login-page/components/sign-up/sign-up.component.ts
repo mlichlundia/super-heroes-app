@@ -1,9 +1,15 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidator } from '../../validators/password.validator';
 import { EmailValidator } from '../../validators/email.validator';
 import { UserValidator } from '../../validators/user.validator';
 import { AuthService } from '../../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,9 +17,10 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./sign-up.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   userPattern = '[a-zA-Z -]*';
+  sub!: Subscription;
 
   constructor(
     private emailValidator: EmailValidator,
@@ -49,12 +56,18 @@ export class SignUpComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
   submit() {
     if (this.form.invalid) {
       return;
     }
 
-    this.auth.signup(this.form.value).subscribe((res) => console.log(res));
+    this.sub = this.auth
+      .signup(this.form.value)
+      .subscribe((res) => console.log(res));
     this.form.reset();
   }
 

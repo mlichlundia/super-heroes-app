@@ -1,5 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { EmailValidator } from '../../validators/email.validator';
 import { PasswordValidator } from '../../validators/password.validator';
@@ -10,8 +16,9 @@ import { PasswordValidator } from '../../validators/password.validator';
   styleUrls: ['./sign-in.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnInit, OnDestroy {
   form!: FormGroup;
+  sub!: Subscription;
 
   constructor(private auth: AuthService) {}
 
@@ -34,12 +41,18 @@ export class SignInComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
   submit() {
     if (this.form.invalid) {
       return;
     }
 
-    this.auth.signin(this.form.value).subscribe((res) => console.log(res));
+    this.sub = this.auth
+      .signin(this.form.value)
+      .subscribe((res) => console.log(res));
     this.form.reset();
   }
 }
