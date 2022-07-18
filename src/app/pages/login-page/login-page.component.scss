@@ -15,7 +15,7 @@
 }
 
 .container {
-  backdrop-filter: blur(rem(16));
+  transform: translate(-80%);
 }
 
 h2 {
@@ -24,4 +24,13 @@ h2 {
 
 .button {
   margin: auto;
+}
+
+.message_error {
+  color: color(error);
+
+  span {
+    margin: 0 rem(6) 0 0;
+    color: inherit;
+  }
 }
