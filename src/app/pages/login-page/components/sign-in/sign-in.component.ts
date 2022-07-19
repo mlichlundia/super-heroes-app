@@ -16,7 +16,7 @@ import { PasswordValidator } from '../../validators/password.validator';
   styleUrls: ['./sign-in.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignInComponent implements OnInit, OnDestroy {
+export class SignInComponent implements OnInit {
   form!: FormGroup;
   sub?: Subscription;
 
@@ -41,20 +41,12 @@ export class SignInComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
-  }
-
   submit() {
     if (this.form.invalid) {
       return;
     }
 
-    this.sub = this.auth
-      .signin(this.form.value)
-      .subscribe((res) => console.log(res));
+    this.auth.signin(this.form.value).subscribe((res) => console.log(res));
     this.form.reset();
   }
 }
