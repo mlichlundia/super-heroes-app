@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
-import { ValidatorReturnValue } from 'src/app/interfaces/validatorReturnValue';
+import { ValidatorReturnValue } from 'src/app/interfaces/validator-return-value.interface';
 
 export class UserValidator {
   static usernameFormat(control: FormControl): ValidatorReturnValue | null {
@@ -22,7 +22,7 @@ export class UserValidator {
       });
     }
 
-    isValid = usernameArr.length === 2 ? true : false;
+    isValid = !!(usernameArr.length === 2);
 
     return isValid ? null : { usernameFormat: true };
   }

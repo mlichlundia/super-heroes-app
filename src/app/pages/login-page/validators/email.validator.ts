@@ -1,22 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  ValidationErrors,
-  ValidatorFn,
-} from '@angular/forms';
+import { AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { BASE_URL_GET_USER } from 'src/app/constants';
-import { UserCheckResponse } from 'src/app/interfaces/serverResponse';
+import { UserCheckResponse } from 'src/app/interfaces/server-response.interface';
 import { environment } from 'src/environments/environment';
-import { ValidatorReturnValue } from '../../../interfaces/validatorReturnValue';
+import { ValidatorReturnValue } from '../../../interfaces/validator-return-value.interface';
 
 @Injectable({ providedIn: 'root' })
 export class EmailValidator {
   constructor(private http: HttpClient) {}
 
-  static allowedDottCount(control: FormControl): ValidatorReturnValue | null {
+  static allowedDottCount(
+    control: FormControl
+  ): Record<string, boolean> | null {
     if (!control.value) {
       return null;
     }
@@ -33,12 +30,12 @@ export class EmailValidator {
       }
     });
 
-    isValid = dottCount.length > 4 ? false : true;
+    isValid = !(dottCount.length > 4);
 
     return isValid ? null : { allowedDottCount: true };
   }
 
-  static allowedDomains(control: FormControl): ValidatorReturnValue | null {
+  static allowedDomains(control: FormControl): Record<string, boolean> | null {
     if (!control.value) {
       return null;
     }
@@ -50,12 +47,14 @@ export class EmailValidator {
       return control.value.endsWith(item);
     });
 
-    isValid = validDomain.length ? false : true;
+    isValid = !validDomain.length;
 
     return isValid ? { allowedDomains: true } : null;
   }
 
-  static allowedLastLength(control: FormControl): ValidatorReturnValue | null {
+  static allowedLastLength(
+    control: FormControl
+  ): Record<string, boolean> | null {
     if (!control.value) {
       return null;
     }
@@ -65,7 +64,7 @@ export class EmailValidator {
     const firstIndex = control.value.indexOf('@');
     const toCheck = control.value.slice(firstIndex);
 
-    isValid = toCheck.length > 5 ? false : true;
+    isValid = !(toCheck.length > 5);
 
     return isValid ? { allowedLastLength: true } : null;
   }
