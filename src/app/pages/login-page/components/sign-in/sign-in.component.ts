@@ -1,11 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { EmailValidator } from '../../validators/email.validator';
 import { PasswordValidator } from '../../validators/password.validator';
@@ -17,12 +11,11 @@ import { PasswordValidator } from '../../validators/password.validator';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInComponent implements OnInit {
-  form!: FormGroup;
-  sub?: Subscription;
+  public form!: FormGroup;
 
-  constructor(private auth: AuthService) {}
+  constructor(private _auth: AuthService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.form = new FormGroup({
       email: new FormControl('', [
         Validators.required,
@@ -41,12 +34,20 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  submit() {
+  public submit() {
     if (this.form.invalid) {
       return;
     }
 
-    this.auth.signin(this.form.value).subscribe((res) => console.log(res));
+    this._auth.signin(this.form.value).subscribe((res) => console.log(res));
     this.form.reset();
+  }
+
+  public get emailControl() {
+    return this.form.get('email');
+  }
+
+  public get passwordControl() {
+    return this.form.get('password');
   }
 }

@@ -2,27 +2,26 @@
 
   <div class="form-control">
     <label for="email">email</label>
-    <input type="email" name="email" id="email" formControlName="email">
+    <input type="email" name="email" formControlName="email">
     <div class="validation"
-      *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+      *ngIf="emailControl?.invalid && emailControl?.touched">
       <small class="validation__error"
-        *ngIf="form.get('email')?.errors?.['required']">
+        *ngIf="emailControl?.errors?.['required']">
         Email is required
       </small>
-      <small class="validation__error"
-        *ngIf="form.get('email')?.errors?.['email']">
+      <small class="validation__error" *ngIf="emailControl?.errors?.['email']">
         Incorrect email
       </small>
       <small class="validation__error"
-        *ngIf="form.get('email')?.errors?.['allowedDomains']">
+        *ngIf="emailControl?.errors?.['allowedDomains']">
         Only .com, .net, .org, .co, .us domains are allowed
       </small>
       <small class="validation__error"
-        *ngIf="form.get('email')?.errors?.['allowedLastLength']">
+        *ngIf="emailControl?.errors?.['allowedLastLength']">
         Not less 5 symbols after @ allowed
       </small>
       <small class="validation__error"
-        *ngIf="form.get('email')?.errors?.['allowedDottCount']">
+        *ngIf="emailControl?.errors?.['allowedDottCount']">
         No more than 3 dotts before @ are allowed
       </small>
     </div>
@@ -30,31 +29,30 @@
 
   <div class="form-control">
     <label for="password">password</label>
-    <input type="password" name="password" id="password"
-      formControlName="password">
+    <input type="password" name="password" formControlName="password">
     <div class="validation"
-      *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+      *ngIf="passwordControl?.invalid && passwordControl?.touched">
       <small class="validation__error"
-        *ngIf="form.get('password')?.errors?.['required']">
+        *ngIf="passwordControl?.errors?.['required']">
         Password is required
       </small>
       <small class="validation__error"
-        *ngIf="form.get('password')?.errors?.['minlength']">
-        Password shoul contain at least
-        {{form.get('password')?.errors?.['minlength']?.requiredLength}}
+        *ngIf="passwordControl?.errors?.['minlength']">
+        Password should contain at least
+        {{passwordControl?.errors?.['minlength']?.requiredLength}}
         characters. Now
-        {{form.get('password')?.errors?.['minlength']?.actualLength}}
+        {{passwordControl?.errors?.['minlength']?.actualLength}}
       </small>
       <small class="validation__error"
-        *ngIf="form.get('password')?.errors?.['containCapitalLetter']">
+        *ngIf="passwordControl?.errors?.['containCapitalLetter']">
         Password should contain at least one capital letter
       </small>
       <small class="validation__error"
-        *ngIf="form.get('password')?.errors?.['allowedOneNumber']">
+        *ngIf="passwordControl?.errors?.['allowedOneNumber']">
         Password should contain at least one number
       </small>
       <small class="validation__error"
-        *ngIf="form.get('password')?.errors?.['allowedSpecialSymbols']">
+        *ngIf="passwordControl?.errors?.['allowedSpecialSymbols']">
         Password should contain at least one special symbol: ( $ % . & ! )
       </small>
     </div>

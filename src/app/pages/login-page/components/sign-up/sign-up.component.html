@@ -4,24 +4,23 @@
     <label for="username">username</label>
     <input type="text" name="username" id="username" formControlName="username">
     <div class="validation"
-      *ngIf="form.get('username')?.invalid && form.get('username')?.touched">
+      *ngIf="userControl?.invalid && userControl?.touched">
       <small class="validation__error"
-        *ngIf="form.get('username')?.errors?.['required']">
+        *ngIf="userControl?.errors?.['required']">
         Username is required
       </small>
       <small class="validation__error"
-        *ngIf="form.get('username')?.errors?.['minlength']">
+        *ngIf="userControl?.errors?.['minlength']">
         Username should contain at least
-        {{form.get('username')?.errors?.['minlength']?.requiredLength}}
+        {{userControl?.errors?.['minlength']?.requiredLength}}
         characters. Now
-        {{form.get('username')?.errors?.['minlength']?.actualLength}}
+        {{userControl?.errors?.['minlength']?.actualLength}}
       </small>
-      <small class="validation__error"
-        *ngIf="form.get('username')?.errors?.['pattern']">
+      <small class="validation__error" *ngIf="userControl?.errors?.['pattern']">
         Username shouldn't contain numbers or special symbols
       </small>
       <small class="validation__error"
-        *ngIf="form.get('username')?.errors?.['usernameFormat']">
+        *ngIf="userControl?.errors?.['usernameFormat']">
         Username is in incorrect format. Should contain two words
       </small>
     </div>
@@ -31,29 +30,28 @@
     <label for="email">email</label>
     <input type="email" name="email" id="email" formControlName="email">
     <div class="validation"
-      *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+      *ngIf="emailControl?.invalid && emailControl?.touched">
       <small class="validation__error"
-        *ngIf="form.get('email')?.errors?.['required']">
+        *ngIf="emailControl?.errors?.['required']">
         Email is required
       </small>
       <small class="validation__error"
-        *ngIf="form.get('email')?.errors?.['isUnique']">
+        *ngIf="emailControl?.errors?.['isUnique']">
         Email should be unique
       </small>
-      <small class="validation__error"
-        *ngIf="form.get('email')?.errors?.['email']">
+      <small class="validation__error" *ngIf="emailControl?.errors?.['email']">
         Incorrect email
       </small>
       <small class="validation__error"
-        *ngIf="form.get('email')?.errors?.['allowedDomains']">
+        *ngIf="emailControl?.errors?.['allowedDomains']">
         Only .com, .net, .org, .co, .us domains are allowed
       </small>
       <small class="validation__error"
-        *ngIf="form.get('email')?.errors?.['allowedLastLength']">
+        *ngIf="emailControl?.errors?.['allowedLastLength']">
         Not less 5 symbols after @ allowed
       </small>
       <small class="validation__error"
-        *ngIf="form.get('email')?.errors?.['allowedDottCount']">
+        *ngIf="emailControl?.errors?.['allowedDottCount']">
         No more than 3 dotts before @ are allowed
       </small>
     </div>
@@ -64,32 +62,32 @@
     <input type="password" name="password" id="password"
       formControlName="password" (keyup)="checkCoincidence()">
     <div class="validation"
-      *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+      *ngIf="passwordControl?.invalid && passwordControl?.touched">
       <small class="validation__error"
-        *ngIf="form.get('password')?.errors?.['required']">
+        *ngIf="passwordControl?.errors?.['required']">
         Password is required
       </small>
       <small class="validation__error"
-        *ngIf="form.get('password')?.errors?.['minlength']">
+        *ngIf="passwordControl?.errors?.['minlength']">
         Password should contain at least
-        {{form.get('password')?.errors?.['minlength']?.requiredLength}}
+        {{passwordControl?.errors?.['minlength']?.requiredLength}}
         characters. Now
-        {{form.get('password')?.errors?.['minlength']?.actualLength}}
+        {{passwordControl?.errors?.['minlength']?.actualLength}}
       </small>
       <small class="validation__error"
-        *ngIf="form.get('password')?.errors?.['containCapitalLetter']">
+        *ngIf="passwordControl?.errors?.['containCapitalLetter']">
         Password should contain at least one capital letter
       </small>
       <small class="validation__error"
-        *ngIf="form.get('password')?.errors?.['allowedOneNumber']">
+        *ngIf="passwordControl?.errors?.['allowedOneNumber']">
         Password should contain at least one number
       </small>
       <small class="validation__error"
-        *ngIf="form.get('password')?.errors?.['allowedSpecialSymbols']">
+        *ngIf="passwordControl?.errors?.['allowedSpecialSymbols']">
         Password should contain at least one special symbol: ( $ % . & ! )
       </small>
       <small class="validation__error"
-        *ngIf="form.get('password')?.errors?.['notSame']">
+        *ngIf="passwordControl?.errors?.['notSame']">
         Password shouldn't contain parts of username or email
       </small>
     </div>

@@ -10,9 +10,11 @@ import {
   throwError,
 } from 'rxjs';
 import {
-  BASE_URL_GET_USER,
   BASE_URL_SIGNIN,
   BASE_URL_SIGNUP,
+  EMAIL_NOT_FOUND,
+  INVALID_EMAIL,
+  INVALID_PASSWORD,
 } from 'src/app/constants';
 import { BaseComponent } from 'src/app/directives/base-component.directive';
 import { ServerAuthResponse } from 'src/app/interfaces/server-response.interface';
@@ -21,16 +23,17 @@ import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService extends BaseComponent {
-  errors$: Subject<string> = new Subject<string>();
+  private _errorsSubject: Subject<string> = new Subject<string>();
+  public errors$: Observable<string> = this._errorsSubject.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(private _http: HttpClient) {
     super();
   }
 
-  signup(user: User): Observable<ServerAuthResponse | null> {
+  public signup(user: User): Observable<ServerAuthResponse | null> {
     user.returnSecureToken = true;
 
-    return this.http
+    return this._http
       .post<ServerAuthResponse | null>(
         `${BASE_URL_SIGNUP}${environment.apiKey}`,
         user
@@ -38,10 +41,10 @@ export class AuthService extends BaseComponent {
       .pipe(tap(this.setToken), takeUntil(this.componentDestroyed$));
   }
 
-  signin(user: User): Observable<any> {
+  public signin(user: User): Observable<any> {
     user.returnSecureToken = true;
 
-    return this.http
+    return this._http
       .post<ServerAuthResponse | null>(
         `${BASE_URL_SIGNIN}${environment.apiKey}`,
         user
@@ -53,21 +56,22 @@ export class AuthService extends BaseComponent {
       );
   }
 
-  logout() {
+  public logout() {
     this.setToken(null);
   }
 
-  get token(): string | null {
+  public get token(): string | null {
     const expDate = new Date(localStorage.getItem('token-exp')!);
 
     if (expDate < new Date()) {
       this.logout();
       return null;
     }
+
     return localStorage.getItem('token');
   }
 
-  setToken(res: ServerAuthResponse | null) {
+  public setToken(res: ServerAuthResponse | null) {
     if (res) {
       const expDate = new Date(new Date().getTime() + +res.expiresIn * 1000);
 
@@ -78,18 +82,18 @@ export class AuthService extends BaseComponent {
     }
   }
 
-  handleError(error: HttpErrorResponse) {
+  public handleError(error: HttpErrorResponse) {
     const { message } = error.error.error;
-    console.log(error);
+
     switch (message) {
-      case 'INVALID_EMAIL':
-        this.errors$.next('Invalid email');
+      case INVALID_EMAIL:
+        this._errorsSubject.next('Invalid email');
         break;
-      case 'INVALID_PASSWORD':
-        this.errors$.next('Invalid password');
+      case INVALID_PASSWORD:
+        this._errorsSubject.next('Invalid password');
         break;
-      case 'EMAIL_NOT_FOUND':
-        this.errors$.next("This email doesn't exist");
+      case EMAIL_NOT_FOUND:
+        this._errorsSubject.next("This email doesn't exist");
         break;
     }
 

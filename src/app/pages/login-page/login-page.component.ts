@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
   ViewEncapsulation,
 } from '@angular/core';
 import { AuthService } from './services/auth.service';
@@ -13,14 +12,12 @@ import { AuthService } from './services/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.ShadowDom,
 })
-export class LoginPageComponent implements OnInit {
-  isNew = false;
+export class LoginPageComponent {
+  public isNew = false;
 
   constructor(public auth: AuthService) {}
 
-  ngOnInit(): void {}
-
-  toggle() {
+  public toggle() {
     this.isNew = !this.isNew;
   }
 }
