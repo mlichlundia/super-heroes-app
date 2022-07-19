@@ -26,11 +26,20 @@ h2 {
   margin: auto;
 }
 
-.message_error {
-  color: color(error);
-
+.message {
   span {
     margin: 0 rem(6) 0 0;
     color: inherit;
   }
+  small {
+    display: inline;
+  }
+}
+
+.message_error {
+  color: color(error);
+}
+
+.message_warning {
+  color: color(warning);
 }
