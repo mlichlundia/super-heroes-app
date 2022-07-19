@@ -21,15 +21,11 @@ export class EmailValidator {
 
     const lastIndex = control.value.indexOf('@');
     const toCheck = control.value.slice(0, lastIndex);
-    const dottCount: string[] = [];
+    const dottCount: string[] = [...toCheck].filter(
+      (item: string) => item === '.'
+    );
 
-    [...toCheck].forEach((item: string) => {
-      if (item === '.') {
-        dottCount.push(item);
-      }
-    });
-
-    isValid = !(dottCount.length > 4);
+    isValid = !(dottCount.length > 3);
 
     return isValid ? null : { allowedDottCount: true };
   }
