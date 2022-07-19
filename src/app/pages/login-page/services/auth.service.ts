@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   catchError,
   map,
@@ -26,7 +27,7 @@ export class AuthService extends BaseComponent {
   private _errorsSubject: Subject<string> = new Subject<string>();
   public errors$: Observable<string> = this._errorsSubject.asObservable();
 
-  constructor(private _http: HttpClient) {
+  constructor(private _http: HttpClient, private _router: Router) {
     super();
   }
 
@@ -58,6 +59,7 @@ export class AuthService extends BaseComponent {
 
   public logout() {
     this.setToken(null);
+    this._router.navigate(['/login']);
   }
 
   public get token(): string | null {
@@ -71,7 +73,7 @@ export class AuthService extends BaseComponent {
     return localStorage.getItem('token');
   }
 
-  public setToken(res: ServerAuthResponse | null) {
+  private setToken(res: ServerAuthResponse | null) {
     if (res) {
       const expDate = new Date(new Date().getTime() + +res.expiresIn * 1000);
 

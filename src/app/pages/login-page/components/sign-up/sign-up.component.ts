@@ -5,6 +5,7 @@ import { EmailValidator } from '../../validators/email.validator';
 import { UserValidator } from '../../validators/user.validator';
 import { AuthService } from '../../services/auth.service';
 import { USER_PATTERN } from 'src/app/constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,7 +19,8 @@ export class SignUpComponent implements OnInit {
   constructor(
     private _emailValidator: EmailValidator,
     private _auth: AuthService,
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    private _router: Router
   ) {}
 
   public ngOnInit(): void {
@@ -63,7 +65,10 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
-    this._auth.signup(this.form.value).subscribe((res) => console.log(res));
+    this._auth.signup(this.form.value).subscribe((res) => {
+      console.log(res);
+      this._router.navigate(['/home', '']);
+    });
     this.form.reset();
   }
 
