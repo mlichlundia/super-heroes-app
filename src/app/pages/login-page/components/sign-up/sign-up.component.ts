@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidator } from '../../validators/password.validator';
 import { EmailValidator } from '../../validators/email.validator';
 import { UserValidator } from '../../validators/user.validator';
@@ -16,19 +16,24 @@ export class SignUpComponent implements OnInit {
   public form!: FormGroup;
 
   constructor(
-    private emailValidator: EmailValidator,
-    private auth: AuthService
+    private _emailValidator: EmailValidator,
+    private _auth: AuthService,
+    private _fb: FormBuilder
   ) {}
 
   public ngOnInit(): void {
-    this.form = new FormGroup({
-      username: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.pattern(USER_PATTERN),
-        UserValidator.usernameFormat,
-      ]),
-      email: new FormControl(
+    this.form = this._fb.group({
+      username: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(USER_PATTERN),
+          UserValidator.usernameFormat,
+        ],
+      ],
+
+      email: [
         '',
         [
           Validators.required,
@@ -37,15 +42,19 @@ export class SignUpComponent implements OnInit {
           EmailValidator.allowedDottCount,
           EmailValidator.allowedLastLength,
         ],
-        [this.emailValidator.isUnique.bind(this.emailValidator)]
-      ),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(5),
-        PasswordValidator.containCapitalLetter,
-        PasswordValidator.allowedOneNumber,
-        PasswordValidator.allowedSpecialSymbols,
-      ]),
+        [this._emailValidator.isUnique.bind(this._emailValidator)],
+      ],
+
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          PasswordValidator.containCapitalLetter,
+          PasswordValidator.allowedOneNumber,
+          PasswordValidator.allowedSpecialSymbols,
+        ],
+      ],
     });
   }
 
@@ -54,7 +63,7 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
-    this.auth.signup(this.form.value).subscribe((res) => console.log(res));
+    this._auth.signup(this.form.value).subscribe((res) => console.log(res));
     this.form.reset();
   }
 
@@ -67,7 +76,7 @@ export class SignUpComponent implements OnInit {
   }
 
   public get userControl() {
-    return this.form.get('user');
+    return this.form.get('username');
   }
 
   public get emailControl() {
