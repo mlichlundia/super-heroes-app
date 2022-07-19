@@ -9,7 +9,6 @@ import { PasswordValidator } from '../../validators/password.validator';
 import { EmailValidator } from '../../validators/email.validator';
 import { UserValidator } from '../../validators/user.validator';
 import { AuthService } from '../../services/auth.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,10 +16,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./sign-up.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignUpComponent implements OnInit, OnDestroy {
+export class SignUpComponent implements OnInit {
   form!: FormGroup;
   userPattern = '[a-zA-Z -]*';
-  sub?: Subscription;
 
   constructor(
     private emailValidator: EmailValidator,
@@ -56,20 +54,12 @@ export class SignUpComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
-  }
-
   submit() {
     if (this.form.invalid) {
       return;
     }
 
-    this.sub = this.auth
-      .signup(this.form.value)
-      .subscribe((res) => console.log(res));
+    this.auth.signup(this.form.value).subscribe((res) => console.log(res));
     this.form.reset();
   }
 
