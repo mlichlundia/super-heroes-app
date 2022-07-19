@@ -1,0 +1,18 @@
+@use "../utilities" as *;
+
+html {
+  @include generate-fonts;
+  @include generate-colors;
+  @include screen-width;
+  @include generate-breakpoints;
+
+  scroll-behavior: smooth;
+}
+
+.container {
+  width: fit-content;
+  margin: 0;
+  padding: rem(32);
+  background: color(light);
+  border-radius: rem(8);
+}

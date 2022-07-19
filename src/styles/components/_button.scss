@@ -1,0 +1,32 @@
+@use "../utilities" as *;
+
+button,
+.button {
+  display: block;
+  padding: rem(10) rem(24);
+  background: color(primary);
+  color: color(light);
+  text-transform: uppercase;
+  font-size: font(16);
+  font-weight: 800;
+  letter-spacing: rem(1.6);
+  border-radius: rem(6);
+
+  &:hover {
+    background: color(primary-sec);
+  }
+}
+
+.button_sec {
+  padding: rem(8) 0;
+  font-weight: 400;
+  text-transform: capitalize;
+  letter-spacing: normal;
+  font-size: font(14);
+  background: none;
+  color: color(dark);
+
+  &:hover {
+    background: none;
+  }
+}

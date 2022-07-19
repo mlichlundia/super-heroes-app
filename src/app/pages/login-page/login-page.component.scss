@@ -1,0 +1,36 @@
+@use "../../../styles/main.scss" as *;
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0a0a0a;
+  background-image: url(/assets/login-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.container {
+  transform: translate(-80%);
+}
+
+h2 {
+  text-align: center;
+}
+
+.button {
+  margin: auto;
+}
+
+.message_error {
+  color: color(error);
+
+  span {
+    margin: 0 rem(6) 0 0;
+    color: inherit;
+  }
+}

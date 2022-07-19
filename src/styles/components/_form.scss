@@ -1,0 +1,36 @@
+@use "../utilities/" as *;
+
+form {
+  width: rem(300);
+}
+
+label {
+  display: inline-block;
+  margin: rem(16) 0 0;
+  color: color(dark);
+}
+
+input {
+  display: inline-block;
+  margin: rem(4) 0 0;
+  padding: rem(4);
+  width: 100%;
+  background: color(light-sec);
+  outline: none;
+  border-radius: rem(4);
+}
+
+.validation__error {
+  padding: rem(4) 0;
+  color: color(error);
+}
+
+input {
+  &.ng-invalid.ng-touched {
+    border: 1px solid color(error);
+  }
+
+  &.ng-valid.ng-touched {
+    border: 1px solid color(primary);
+  }
+}
