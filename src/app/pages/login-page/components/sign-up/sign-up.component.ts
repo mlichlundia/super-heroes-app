@@ -67,7 +67,7 @@ export class SignUpComponent implements OnInit {
 
     this._auth.signup(this.form.value).subscribe((res) => {
       console.log(res);
-      this._router.navigate(['/home', '']);
+      this._router.navigate(['/home']);
     });
     this.form.reset();
   }

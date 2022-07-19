@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { AuthGuard } from 'src/app/auth.guard';
 import { MainRoutingModule } from './main-routing.module';
 import { UserInfoComponent } from './pages/user-info/user-info.component';
+import { SelectionPageComponent } from './pages/selection-page/selection-page.component';
 
 @NgModule({
-  declarations: [UserInfoComponent],
+  declarations: [UserInfoComponent, SelectionPageComponent],
   imports: [CommonModule, MainRoutingModule],
   providers: [AuthGuard],
 })
