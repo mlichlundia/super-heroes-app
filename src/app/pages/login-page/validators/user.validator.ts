@@ -1,8 +1,7 @@
 import { FormControl } from '@angular/forms';
-import { ValidatorReturnValue } from 'src/app/interfaces/validator-return-value.interface';
 
 export class UserValidator {
-  static usernameFormat(control: FormControl): ValidatorReturnValue | null {
+  static usernameFormat(control: FormControl): Record<string, boolean> | null {
     const username = control.value.trim();
 
     let isValid = false;

@@ -5,7 +5,6 @@ import { map, Observable } from 'rxjs';
 import { BASE_URL_GET_USER } from 'src/app/constants';
 import { UserCheckResponse } from 'src/app/interfaces/server-response.interface';
 import { environment } from 'src/environments/environment';
-import { ValidatorReturnValue } from '../../../interfaces/validator-return-value.interface';
 
 @Injectable({ providedIn: 'root' })
 export class EmailValidator {
