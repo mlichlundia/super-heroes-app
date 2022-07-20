@@ -6,6 +6,8 @@ import { UserValidator } from '../../validators/user.validator';
 import { AuthService } from '../../services/auth.service';
 import { USER_PATTERN } from 'src/app/constants';
 import { Router } from '@angular/router';
+import { BaseComponent } from 'src/app/directives/base-component.directive';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-up.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent extends BaseComponent implements OnInit {
   public form!: FormGroup;
 
   constructor(
@@ -21,7 +23,9 @@ export class SignUpComponent implements OnInit {
     private _auth: AuthService,
     private _fb: FormBuilder,
     private _router: Router
-  ) {}
+  ) {
+    super();
+  }
 
   public ngOnInit(): void {
     this.form = this._fb.group({
@@ -65,10 +69,13 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
-    this._auth.signup(this.form.value).subscribe((res) => {
-      console.log(res);
-      this._router.navigate(['/home', '']);
-    });
+    this._auth
+      .signup(this.form.value)
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe((res) => {
+        console.log(res);
+        this._router.navigate(['/home', '']);
+      });
     this.form.reset();
   }
 

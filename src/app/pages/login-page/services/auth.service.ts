@@ -1,15 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  catchError,
-  map,
-  Observable,
-  Subject,
-  takeUntil,
-  tap,
-  throwError,
-} from 'rxjs';
+import { catchError, Observable, Subject, tap, throwError } from 'rxjs';
 import {
   BASE_URL_SIGNIN,
   BASE_URL_SIGNUP,
@@ -17,19 +9,16 @@ import {
   INVALID_EMAIL,
   INVALID_PASSWORD,
 } from 'src/app/constants';
-import { BaseComponent } from 'src/app/directives/base-component.directive';
 import { ServerAuthResponse } from 'src/app/interfaces/server-response.interface';
 import { User } from 'src/app/interfaces/user.interface';
 import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
-export class AuthService extends BaseComponent {
+export class AuthService {
   private _errorsSubject: Subject<string> = new Subject<string>();
   public errors$: Observable<string> = this._errorsSubject.asObservable();
 
-  constructor(private _http: HttpClient, private _router: Router) {
-    super();
-  }
+  constructor(private _http: HttpClient, private _router: Router) {}
 
   public signup(user: User): Observable<ServerAuthResponse | null> {
     user.returnSecureToken = true;
@@ -39,7 +28,7 @@ export class AuthService extends BaseComponent {
         `${BASE_URL_SIGNUP}${environment.apiKey}`,
         user
       )
-      .pipe(tap(this.setToken), takeUntil(this.componentDestroyed$));
+      .pipe(tap(this.setToken));
   }
 
   public signin(user: User): Observable<any> {
@@ -50,11 +39,7 @@ export class AuthService extends BaseComponent {
         `${BASE_URL_SIGNIN}${environment.apiKey}`,
         user
       )
-      .pipe(
-        tap(this.setToken),
-        catchError(this.handleError.bind(this)),
-        takeUntil(this.componentDestroyed$)
-      );
+      .pipe(tap(this.setToken), catchError(this.handleError.bind(this)));
   }
 
   public logout() {
