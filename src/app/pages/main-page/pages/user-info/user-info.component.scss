@@ -1,0 +1,19 @@
+@use "../../../../../styles/main.scss" as *;
+
+.container {
+  width: rem(640);
+  margin: auto;
+}
+
+.category-tabs {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    font-size: font(14);
+  }
+}
+
+.tab_container {
+  margin: rem(24) 0 0;
+}

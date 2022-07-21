@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-user-info',
@@ -6,8 +6,13 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./user-info.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserInfoComponent implements OnInit {
+export class UserInfoComponent {
+  public categories = ['user heroes list', 'battles history', 'power ups'];
+  public activeContainer = 'user heroes list';
+
   constructor() {}
 
-  ngOnInit(): void {}
+  public setCategory(category: string) {
+    this.activeContainer = category;
+  }
 }
