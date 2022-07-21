@@ -1,0 +1,33 @@
+<div class="hero__container">
+  <img [src]="hero?.images?.['lg']" alt="hero">
+  <div class="hero__info">
+    <div class="hero__descpirtion">
+      <h3>{{ hero?.name }}</h3>
+      <ul>
+        <li>
+          <span>combat:</span>{{ hero?.powerstats?.['combat'] }}
+        </li>
+        <li>
+          <span>durability:</span>{{ hero?.powerstats?.['durability'] }}
+        </li>
+        <li>
+          <span>intelligence:</span>{{ hero?.powerstats?.['intelligence'] }}
+        </li>
+        <li>
+          <span>power:</span>{{ hero?.powerstats?.['power'] }}
+        </li>
+        <li>
+          <span>speed:</span>{{ hero?.powerstats?.['speed'] }}
+        </li>
+        <li>
+          <span>strength:</span>{{ hero?.powerstats?.['strength'] }}
+        </li>
+      </ul>
+    </div>
+    <div class="hero__buttons">
+      <button class="button">view hero</button>
+      <button class="button_sec" [disabled]="isMyHero"
+        (click)="selectHero()">select</button>
+    </div>
+  </div>
+</div>
