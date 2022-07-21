@@ -7,6 +7,7 @@ html {
   @include generate-breakpoints;
 
   scroll-behavior: smooth;
+  background: color(dark);
 }
 
 .container {
@@ -15,4 +16,8 @@ html {
   padding: rem(32);
   background: color(light);
   border-radius: rem(8);
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
