@@ -8,8 +8,8 @@ import { UserInfoComponent } from './pages/user-info/user-info.component';
 import { SelectionPageComponent } from './pages/selection-page/selection-page.component';
 import { HeroCardComponent } from './components/hero-card/hero-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { PreviousSearchesComponent } from './components/previous-searches/previous-searches.component';
-import { SearchPointComponent } from './components/search-point/search-point.component';
+import { PreviousSearchesComponent } from './components/search-bar/previous-searches/previous-searches.component';
+import { SearchPointComponent } from './components/search-bar/previous-searches/search-point/search-point.component';
 
 @NgModule({
   declarations: [
