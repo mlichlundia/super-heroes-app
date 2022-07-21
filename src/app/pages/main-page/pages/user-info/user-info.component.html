@@ -1,1 +1,17 @@
-<p>user-info works!</p>
+<div class="container">
+
+  <div class="category-tabs">
+    <button *ngFor="let category of categories"
+      (click)="setCategory(category)">{{ category }}</button>
+  </div>
+
+  <div class="tab_container">
+    <app-heroes-list *ngIf="activeContainer === 'user heroes list'">
+    </app-heroes-list>
+    <app-history *ngIf="activeContainer === 'battles history'">
+    </app-history>
+    <app-power-ups *ngIf="activeContainer === 'power ups'">
+    </app-power-ups>
+  </div>
+
+</div>
