@@ -12,7 +12,14 @@ import { PreviousSearchesComponent } from './components/previous-searches/previo
 import { SearchPointComponent } from './components/search-point/search-point.component';
 
 @NgModule({
-  declarations: [UserInfoComponent, SelectionPageComponent, HeroCardComponent, SearchBarComponent, PreviousSearchesComponent, SearchPointComponent],
+  declarations: [
+    UserInfoComponent,
+    SelectionPageComponent,
+    HeroCardComponent,
+    SearchBarComponent,
+    PreviousSearchesComponent,
+    SearchPointComponent,
+  ],
   imports: [
     CommonModule,
     MainRoutingModule,

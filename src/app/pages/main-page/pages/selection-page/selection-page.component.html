@@ -1,6 +1,7 @@
 <div class="container">
   <h3>Find hero</h3>
-  <app-search-bar (submit)="submit($event)"></app-search-bar>
+  <app-search-bar (submit)="submit($event)">
+  </app-search-bar>
   <div class="heroes__wrapper">
     <app-hero-card *ngFor="let hero of heroes | async" [hero]="hero">
     </app-hero-card>
