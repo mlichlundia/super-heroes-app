@@ -1,6 +1,7 @@
 <div class="search__wrapper">
   <div class="search__container">
-    <!-- <app-alphabet-searc></app-alphabet-searc> -->
+    <app-alphabet-search (searchByLetter)="searchByValue($event)">
+    </app-alphabet-search>
     <div class="search">
       <label for="search"></label>
       <input type="text" placeholder="Search..." [(ngModel)]="searchValue"
@@ -17,6 +18,6 @@
     </button>
   </div>
   <app-previous-searches [newSearch]="prevSearchValue"
-    (searchPrev)="searchPrev($event)">
+    (searchPrev)="searchByValue($event)">
   </app-previous-searches>
 </div>

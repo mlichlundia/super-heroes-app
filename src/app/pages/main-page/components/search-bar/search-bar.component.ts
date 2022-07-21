@@ -37,7 +37,7 @@ export class SearchBarComponent {
     this.submit.emit(this.searchValue);
   }
 
-  public searchPrev(search: string) {
+  public searchByValue(search: string) {
     this.searchValue = search;
     this.submit.emit(this.searchValue);
   }

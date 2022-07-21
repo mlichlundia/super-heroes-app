@@ -1,6 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
+  Output,
   ViewEncapsulation,
 } from '@angular/core';
 
@@ -43,6 +45,8 @@ export class AlphabetSearchComponent {
   public currentLetter = 'a';
   public isOpen = false;
 
+  @Output() searchByLetter = new EventEmitter<string>();
+
   constructor() {}
 
   public changeLetter(letter: string) {
@@ -56,6 +60,6 @@ export class AlphabetSearchComponent {
   public search(letter: string) {
     this.changeLetter(letter);
     this.toggle();
-    //output and search
+    this.searchByLetter.emit(letter);
   }
 }

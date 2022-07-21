@@ -10,6 +10,7 @@ import { HeroCardComponent } from './components/hero-card/hero-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { PreviousSearchesComponent } from './components/search-bar/previous-searches/previous-searches.component';
 import { SearchPointComponent } from './components/search-bar/previous-searches/search-point/search-point.component';
+import { AlphabetSearchComponent } from './components/alphabet-search/alphabet-search.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SearchPointComponent } from './components/search-bar/previous-searches/
     SearchBarComponent,
     PreviousSearchesComponent,
     SearchPointComponent,
+    AlphabetSearchComponent,
   ],
   imports: [
     CommonModule,
