@@ -1,44 +1,8 @@
 <div class="container">
   <h3>Find hero</h3>
-  <div class="search__wrapper">
-    <div class="search__container">
-      <div class="search__alphabet">a</div>
-      <div class="search">
-        <label for="search"></label>
-        <input type="text" placeholder="Search...">
-      </div>
-    </div>
-    <div class="search__previous">
-      <span>man</span>
-      <span>woop</span>
-      <span>kit</span>
-    </div>
-  </div>
+  <app-search-bar (submit)="submit($event)"></app-search-bar>
   <div class="heroes__wrapper">
-    <div class="hero__container">
-      <img
-        src="https://images.unsplash.com/photo-1542856204-00101eb6def4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"
-        alt="hero">
-      <div class="hero__info">
-        <div class="hero__descpirtion">
-          <h3>Hero1</h3>
-          <ul>
-            <li>
-              <span>power:</span>16
-            </li>
-            <li>
-              <span>power:</span>16
-            </li>
-            <li>
-              <span>power:</span>16
-            </li>
-          </ul>
-        </div>
-        <div class="hero__buttons">
-          <button class="button">view hero</button> <button
-            class="button_sec">select</button>
-        </div>
-      </div>
-    </div>
+    <app-hero-card *ngFor="let hero of heroes | async" [hero]="hero">
+    </app-hero-card>
   </div>
 </div>
