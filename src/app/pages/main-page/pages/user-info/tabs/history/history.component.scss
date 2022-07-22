@@ -1,0 +1,46 @@
+@use "../../../../../../../styles/main.scss" as *;
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  tr {
+    > :first-child {
+      border-top-left-radius: rem(8);
+    }
+
+    > :last-child {
+      border-top-right-radius: rem(8);
+    }
+  }
+
+  th {
+    padding: rem(12);
+    background: color(light-sec);
+    color: color(primary);
+    cursor: pointer;
+    transition: 0.25s;
+
+    &:hover {
+      background: color(middle);
+    }
+  }
+}
+
+tbody {
+  > :nth-child(2n) {
+    background: color(light-200);
+  }
+
+  td {
+    padding: rem(4);
+    text-align: center;
+  }
+
+  // > :last-child {
+  border-bottom-left-radius: rem(8);
+  border-bottom-right-radius: rem(8);
+  // }
+}

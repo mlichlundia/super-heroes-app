@@ -1,1 +1,22 @@
-<p>history works!</p>
+<table *ngIf="battles; else noBattles">
+  <thead>
+    <tr>
+      <th (click)="sortByData()">Battle date and time</th>
+      <th (click)="sortByHero()">Hero name</th>
+      <th (click)="sortByEnemy()">Opponent name</th>
+      <th (click)="sortByState()">Battle result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let battle of battles">
+      <td>{{ battle.date | date: 'short' }}</td>
+      <td>{{ battle.hero }}</td>
+      <td>{{ battle.enemy }}</td>
+      <td>{{ battle.status | uppercase }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noBattles>
+  <p>You haven't ever fight</p>
+</ng-template>
