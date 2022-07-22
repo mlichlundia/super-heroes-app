@@ -1,0 +1,43 @@
+@use "../../../../../styles/main.scss" as *;
+
+.alphabet {
+  position: relative;
+  margin: 0 rem(12) 0 0;
+  z-index: 1;
+}
+
+.alphabet__button {
+  width: rem(32);
+  height: rem(32);
+  padding: 0;
+  border-radius: 50%;
+  font-size: rem(10);
+
+  &_unselected {
+    background: color(light-sec);
+    color: color(primary);
+    margin: rem(8) 0 0;
+
+    &:hover:enabled {
+      background: color(middle);
+    }
+  }
+}
+
+.alphabet__list {
+  display: none;
+  height: rem(460);
+  overflow: auto;
+  position: absolute;
+  top: rem(-4);
+  padding: rem(36) rem(4) rem(4);
+  background: color(light);
+  border: rem(1) solid color(primary);
+  border-radius: rem(64);
+  transform: translate(rem(-5));
+  z-index: -1;
+}
+
+.alphabet__list_open {
+  display: block;
+}
