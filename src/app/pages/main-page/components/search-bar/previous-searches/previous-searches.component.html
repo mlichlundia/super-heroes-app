@@ -1,0 +1,5 @@
+<div class="search__previous" *ngIf="!!prevSearches">
+  <app-search-point *ngFor="let search of prevSearches" [search]="search"
+    (searchPrev)="searchValue($event)">
+  </app-search-point>
+</div>

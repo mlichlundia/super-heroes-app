@@ -8,10 +8,15 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './pages/login-page/services/auth.service';
+import { HeroesService } from './pages/main-page/services/heroes.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private _auth: AuthService, private _router: Router) {}
+  constructor(
+    private _auth: AuthService,
+    private _heroesService: HeroesService,
+    private _router: Router
+  ) {}
 
   public canActivate(
     route: ActivatedRouteSnapshot,
@@ -25,6 +30,7 @@ export class AuthGuard implements CanActivate {
       return true;
     } else {
       this._auth.logout();
+      this._heroesService.clearPrevSearches();
       this._router.navigate(['/login'], {
         queryParams: {
           loginAgain: true,

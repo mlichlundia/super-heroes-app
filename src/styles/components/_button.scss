@@ -12,8 +12,12 @@ button,
   letter-spacing: rem(1.6);
   border-radius: rem(6);
 
-  &:hover {
+  &:hover:enabled {
     background: color(primary-sec);
+  }
+
+  &:disabled {
+    opacity: 0.5;
   }
 }
 
@@ -26,7 +30,7 @@ button,
   background: none;
   color: color(dark);
 
-  &:hover {
+  &:hover:enabled {
     background: none;
   }
 }

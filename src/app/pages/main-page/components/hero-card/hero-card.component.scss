@@ -1,0 +1,52 @@
+@use "../../../../../styles/main.scss" as *;
+
+.hero__container {
+  position: relative;
+  margin: rem(16) 0;
+  padding: rem(24);
+  border: rem(1) solid color(light-sec);
+  border-radius: rem(6);
+  display: flex;
+
+  img {
+    width: rem(240);
+    margin: 0 rem(16) 0 0;
+    border-radius: rem(4);
+  }
+
+  h3 {
+    margin: 0 0 rem(8);
+  }
+
+  ul {
+    margin: 0 0 rem(16);
+  }
+
+  li {
+    margin: rem(4) 0;
+
+    span {
+      margin: 0 rem(8) 0 0;
+      font-weight: 800;
+      color: color(primary);
+    }
+  }
+}
+
+.hero__info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero__buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.heroes__wrapper {
+  > :last-child {
+    margin: rem(16) 0 0;
+  }
+}

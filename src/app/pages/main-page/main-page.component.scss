@@ -1,0 +1,22 @@
+@use "../../../styles/main.scss" as *;
+
+:host {
+  display: block;
+  background: color(dark);
+  min-height: 100vh;
+}
+
+header {
+  padding: rem(16) rem(24);
+  background: color(light);
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  width: rem(48);
+}
+
+main {
+  padding: rem(48) rem(120);
+}
