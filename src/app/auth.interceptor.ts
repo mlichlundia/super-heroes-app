@@ -11,7 +11,7 @@ import { catchError, Observable, tap, throwError } from 'rxjs';
 import { AuthService } from './pages/login-page/services/auth.service';
 
 @Injectable()
-export class AuthInterseptor implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
   constructor(private _auth: AuthService, private _router: Router) {}
 
   public intercept(

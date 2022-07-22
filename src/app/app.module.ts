@@ -5,12 +5,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthInterseptor } from './auth.interseptor';
+import { AuthInterceptor } from './auth.interceptor';
 
 const INTERSEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
   multi: true,
-  useClass: AuthInterseptor,
+  useClass: AuthInterceptor,
 };
 
 @NgModule({

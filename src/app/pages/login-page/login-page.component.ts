@@ -29,7 +29,7 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  public toggle() {
+  public toggle(): void {
     this.isNew = !this.isNew;
   }
 }

@@ -16,12 +16,11 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PreviousSearchesComponent implements OnInit, OnChanges {
+  @Input() public newSearch!: string;
+  @Output() public searchPrev: EventEmitter<string> =
+    new EventEmitter<string>();
+
   public prevSearches!: string[] | null;
-
-  @Input() newSearch!: string;
-  @Output() searchPrev = new EventEmitter<string>();
-
-  constructor() {}
 
   public ngOnInit(): void {
     this.prevSearches = JSON.parse(localStorage.getItem('previous-searches')!);
@@ -43,7 +42,7 @@ export class PreviousSearchesComponent implements OnInit, OnChanges {
     );
   }
 
-  public searchValue(search: string) {
+  public searchValue(search: string): void {
     this.searchPrev.emit(search);
   }
 }

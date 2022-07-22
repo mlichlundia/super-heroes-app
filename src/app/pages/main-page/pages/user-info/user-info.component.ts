@@ -7,12 +7,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserInfoComponent {
-  public categories = ['user heroes list', 'battles history', 'power ups'];
-  public activeContainer = 'user heroes list';
+  public categories: string[] = [
+    'user heroes list',
+    'battles history',
+    'power ups',
+  ];
+  public activeContainer: string = 'user heroes list';
 
-  constructor() {}
-
-  public setCategory(category: string) {
+  public setCategory(category: string): void {
     this.activeContainer = category;
   }
 }
