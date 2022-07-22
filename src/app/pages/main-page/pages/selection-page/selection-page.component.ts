@@ -14,7 +14,7 @@ export class SelectionPageComponent {
 
   constructor(public _heroService: HeroesService) {}
 
-  public submit(searchValue: string) {
+  public submit(searchValue: string): void {
     this.heroes = this._heroService.getHeroes(searchValue);
   }
 }

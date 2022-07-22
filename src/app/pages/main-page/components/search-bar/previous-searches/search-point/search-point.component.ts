@@ -6,12 +6,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./search-point.component.scss'],
 })
 export class SearchPointComponent {
-  @Input() search!: string;
-  @Output() searchPrev = new EventEmitter<string>();
+  @Input() public search!: string;
+  @Output() public searchPrev: EventEmitter<string> =
+    new EventEmitter<string>();
 
-  constructor() {}
-
-  public searchValue() {
+  public searchValue(): void {
     this.searchPrev.emit(this.search);
   }
 }

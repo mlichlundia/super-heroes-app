@@ -12,15 +12,13 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchBarComponent {
-  public searchValue = '';
-  public isValidSearch = false;
-  public prevSearchValue = '';
+  @Output() public submit = new EventEmitter<string>();
 
-  @Output() submit = new EventEmitter<string>();
+  public searchValue: string = '';
+  public isValidSearch: boolean = false;
+  public prevSearchValue: string = '';
 
-  constructor() {}
-
-  public searchHero(event?: KeyboardEvent) {
+  public searchHero(event?: KeyboardEvent): void {
     this.isValidSearch =
       this.searchValue.length === this.searchValue.trim().length &&
       !!this.searchValue.length;
@@ -37,7 +35,7 @@ export class SearchBarComponent {
     this.submit.emit(this.searchValue);
   }
 
-  public searchPrev(search: string) {
+  public searchByValue(search: string): void {
     this.searchValue = search;
     this.submit.emit(this.searchValue);
   }

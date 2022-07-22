@@ -1,0 +1,11 @@
+<div class="alphabet">
+  <button class="alphabet__button" (click)="toggle()">{{ currentLetter
+    }}</button>
+
+  <ul class="alphabet__list" [class.alphabet__list_open]="isOpen">
+    <li *ngFor=" let letter of letters">
+      <app-letter [letter]="letter" (searchByLetter)="search($event)">
+      </app-letter>
+    </li>
+  </ul>
+</div>

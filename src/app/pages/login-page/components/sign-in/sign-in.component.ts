@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -30,6 +31,10 @@ export class SignInComponent extends BaseComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.initForm();
+  }
+
+  public initForm(): void {
     this.form = this._fb.group({
       email: [
         '',
@@ -55,7 +60,7 @@ export class SignInComponent extends BaseComponent implements OnInit {
     });
   }
 
-  public submit() {
+  public submit(): void {
     if (this.form.invalid) {
       return;
     }
@@ -70,11 +75,11 @@ export class SignInComponent extends BaseComponent implements OnInit {
     this.form.reset();
   }
 
-  public get emailControl() {
+  public get emailControl(): AbstractControl<string> | null {
     return this.form.get('email');
   }
 
-  public get passwordControl() {
+  public get passwordControl(): AbstractControl<string> | null {
     return this.form.get('password');
   }
 }

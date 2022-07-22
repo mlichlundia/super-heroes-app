@@ -21,6 +21,10 @@ export class LoginPageComponent implements OnInit {
   constructor(public auth: AuthService, private _route: ActivatedRoute) {}
 
   public ngOnInit(): void {
+    this.checkSessionStatus();
+  }
+
+  public checkSessionStatus(): void {
     this._route.queryParams.subscribe((params: Params) => {
       if (params['loginAgain']) {
         this.message =
@@ -29,7 +33,7 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  public toggle() {
+  public toggle(): void {
     this.isNew = !this.isNew;
   }
 }

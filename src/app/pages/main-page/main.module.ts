@@ -8,8 +8,13 @@ import { UserInfoComponent } from './pages/user-info/user-info.component';
 import { SelectionPageComponent } from './pages/selection-page/selection-page.component';
 import { HeroCardComponent } from './components/hero-card/hero-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { AlphabetSearchComponent } from './components/alphabet-search/alphabet-search.component';
+import { LetterComponent } from './components/alphabet-search/letter/letter.component';
 import { PreviousSearchesComponent } from './components/search-bar/previous-searches/previous-searches.component';
 import { SearchPointComponent } from './components/search-bar/previous-searches/search-point/search-point.component';
+import { HeroesListComponent } from './pages/user-info/tabs/heroes-list/heroes-list.component';
+import { HistoryComponent } from './pages/user-info/tabs/history/history.component';
+import { PowerUpsComponent } from './pages/user-info/tabs/power-ups/power-ups.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +24,11 @@ import { SearchPointComponent } from './components/search-bar/previous-searches/
     SearchBarComponent,
     PreviousSearchesComponent,
     SearchPointComponent,
+    HeroesListComponent,
+    HistoryComponent,
+    PowerUpsComponent,
+    AlphabetSearchComponent,
+    LetterComponent,
   ],
   imports: [
     CommonModule,

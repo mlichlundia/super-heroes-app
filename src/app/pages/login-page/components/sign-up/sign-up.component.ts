@@ -1,5 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { PasswordValidator } from '../../validators/password.validator';
 import { EmailValidator } from '../../validators/email.validator';
 import { UserValidator } from '../../validators/user.validator';
@@ -28,6 +33,10 @@ export class SignUpComponent extends BaseComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.initForm();
+  }
+
+  public initForm(): void {
     this.form = this._fb.group({
       username: [
         '',
@@ -64,7 +73,7 @@ export class SignUpComponent extends BaseComponent implements OnInit {
     });
   }
 
-  public submit() {
+  public submit(): void {
     if (this.form.invalid) {
       return;
     }
@@ -79,7 +88,7 @@ export class SignUpComponent extends BaseComponent implements OnInit {
     this.form.reset();
   }
 
-  public checkCoincidence() {
+  public checkCoincidence(): void {
     const username = this.form.get('username')?.value;
     const email = this.form.get('email')?.value;
     const passwordControl = this.form.controls['password'];
@@ -87,15 +96,15 @@ export class SignUpComponent extends BaseComponent implements OnInit {
     passwordControl.addValidators([PasswordValidator.notSame(username, email)]);
   }
 
-  public get userControl() {
+  public get userControl(): AbstractControl<string> | null {
     return this.form.get('username');
   }
 
-  public get emailControl() {
+  public get emailControl(): AbstractControl<string> | null {
     return this.form.get('email');
   }
 
-  public get passwordControl() {
+  public get passwordControl(): AbstractControl<string> | null {
     return this.form.get('password');
   }
 }

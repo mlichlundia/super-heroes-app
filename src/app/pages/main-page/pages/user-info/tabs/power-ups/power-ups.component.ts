@@ -1,0 +1,8 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-power-ups',
+  templateUrl: './power-ups.component.html',
+  styleUrls: ['./power-ups.component.scss'],
+})
+export class PowerUpsComponent {}

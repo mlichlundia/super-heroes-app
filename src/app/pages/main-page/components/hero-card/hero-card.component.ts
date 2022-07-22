@@ -13,20 +13,26 @@ import { Hero } from 'src/app/interfaces/hero.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroCardComponent implements OnInit {
-  @Input() hero!: Hero;
+  @Input() public hero!: Hero;
 
   public isMyHero = false;
   public heroStorage: Hero[] = JSON.parse(localStorage.getItem('my-heroes')!);
 
-  constructor() {}
+  public ngOnInit(): void {
+    this.checkIsMyHero();
+  }
 
-  public ngOnInit() {
+  public get powerups(): string[] {
+    return Object.keys(this.hero.powerstats);
+  }
+
+  public checkIsMyHero(): void {
     this.isMyHero = !!this.heroStorage?.find(
       (item) => item.name === this.hero.name
     );
   }
 
-  public selectHero() {
+  public selectHero(): void {
     this.heroStorage = JSON.parse(localStorage.getItem('my-heroes')!);
 
     this.heroStorage = this.heroStorage
