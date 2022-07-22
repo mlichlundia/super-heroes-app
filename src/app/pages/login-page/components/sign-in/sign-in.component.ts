@@ -31,6 +31,10 @@ export class SignInComponent extends BaseComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.initForm();
+  }
+
+  public initForm(): void {
     this.form = this._fb.group({
       email: [
         '',

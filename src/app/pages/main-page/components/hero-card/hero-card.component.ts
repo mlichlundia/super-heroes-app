@@ -19,6 +19,10 @@ export class HeroCardComponent implements OnInit {
   public heroStorage: Hero[] = JSON.parse(localStorage.getItem('my-heroes')!);
 
   public ngOnInit(): void {
+    this.checkIsMyHero();
+  }
+
+  public checkIsMyHero(): void {
     this.isMyHero = !!this.heroStorage?.find(
       (item) => item.name === this.hero.name
     );
