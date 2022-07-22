@@ -8,7 +8,7 @@ import { Hero } from 'src/app/interfaces/hero.interface';
 })
 export class HeroesListComponent implements OnInit {
   public heroes: Hero[] = JSON.parse(localStorage.getItem('my-heroes')!);
-  public selected!: Hero;
+  public selected!: Hero | null;
 
   public ngOnInit(): void {
     this._showHeroes();
@@ -20,6 +20,6 @@ export class HeroesListComponent implements OnInit {
   }
 
   private _setSelected() {
-    this.selected = this.heroes[this.heroes.length - 1];
+    this.selected = this.heroes ? this.heroes[this.heroes.length - 1] : null;
   }
 }
