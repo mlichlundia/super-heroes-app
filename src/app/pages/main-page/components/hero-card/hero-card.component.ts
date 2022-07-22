@@ -22,6 +22,10 @@ export class HeroCardComponent implements OnInit {
     this.checkIsMyHero();
   }
 
+  public get powerups(): string[] {
+    return Object.keys(this.hero.powerstats);
+  }
+
   public checkIsMyHero(): void {
     this.isMyHero = !!this.heroStorage?.find(
       (item) => item.name === this.hero.name
