@@ -3,6 +3,7 @@
   <div class="hero__info">
     <div class="hero__descpirtion" *ngIf="hero?.powerstats">
       <h3>{{ hero.name }}</h3>
+      <ng-content></ng-content>
       <ul>
         <li *ngFor="let power of powerups">
           <span>{{ power | titlecase }}:</span>{{ hero.powerstats?.[power]}}
@@ -10,9 +11,11 @@
       </ul>
     </div>
     <div class="hero__buttons">
-      <button class="button">view hero</button>
       <button class="button_sec" [disabled]="isMyHero"
-        (click)="selectHero()">select</button>
+        (click)="selectHero()">select
+      </button>
+      <button class="button">view hero</button>
+
     </div>
   </div>
 </div>

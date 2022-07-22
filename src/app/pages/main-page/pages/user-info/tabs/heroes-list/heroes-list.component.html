@@ -1,1 +1,10 @@
-<p>heroes-list works!</p>
+<div *ngIf="heroes; else noSelection">
+  <app-hero-card *ngFor="let hero of heroes" [hero]="hero">
+    <small class="status" *ngIf="hero === selected">★ Selected</small>
+  </app-hero-card>
+  <a class="button" [routerLink]="['/home', 'heroes-list']" *ngIf="heroes">+</a>
+</div>
+
+<ng-template #noSelection>
+  <p>You haven't selected any heroes yet</p>
+</ng-template>
