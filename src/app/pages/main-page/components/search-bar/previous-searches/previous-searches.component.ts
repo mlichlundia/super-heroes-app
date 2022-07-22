@@ -23,6 +23,10 @@ export class PreviousSearchesComponent implements OnInit, OnChanges {
   public prevSearches!: string[] | null;
 
   public ngOnInit(): void {
+    this.fillPrevs();
+  }
+
+  public fillPrevs(): void {
     this.prevSearches = JSON.parse(localStorage.getItem('previous-searches')!);
   }
 
