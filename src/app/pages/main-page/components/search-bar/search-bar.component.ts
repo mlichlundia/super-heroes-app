@@ -35,11 +35,7 @@ export class SearchBarComponent {
     this.submit.emit(this.searchValue);
   }
 
-<<<<<<< HEAD
-  public searchByValue(search: string) {
-=======
-  public searchPrev(search: string): void {
->>>>>>> 3068a01 (US006: fixed codestyle)
+  public searchByValue(search: string): void {
     this.searchValue = search;
     this.submit.emit(this.searchValue);
   }
