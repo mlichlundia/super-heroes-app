@@ -42,7 +42,7 @@ export class AuthService {
       .pipe(tap(this.setToken), catchError(this.handleError.bind(this)));
   }
 
-  public logout() {
+  public logout(): void {
     this.setToken(null);
     this._router.navigate(['/login']);
   }
@@ -58,7 +58,7 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  private setToken(res: ServerAuthResponse | null) {
+  private setToken(res: ServerAuthResponse | null): void {
     if (res) {
       const expDate = new Date(new Date().getTime() + +res.expiresIn * 1000);
 
@@ -69,7 +69,7 @@ export class AuthService {
     }
   }
 
-  public handleError(error: HttpErrorResponse) {
+  public handleError(error: HttpErrorResponse): Observable<HttpErrorResponse> {
     const { message } = error.error.error;
 
     switch (message) {

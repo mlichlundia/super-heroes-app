@@ -23,7 +23,7 @@ export class HeroesService {
       .pipe(map((res) => Object.values(res)));
   }
 
-  public clearPrevSearches() {
+  public clearPrevSearches(): void {
     localStorage.setItem('previous-searches', '');
   }
 }
