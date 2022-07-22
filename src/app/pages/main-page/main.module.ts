@@ -8,9 +8,10 @@ import { UserInfoComponent } from './pages/user-info/user-info.component';
 import { SelectionPageComponent } from './pages/selection-page/selection-page.component';
 import { HeroCardComponent } from './components/hero-card/hero-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { AlphabetSearchComponent } from './components/alphabet-search/alphabet-search.component';
+import { LetterComponent } from './components/alphabet-search/letter/letter.component';
 import { PreviousSearchesComponent } from './components/search-bar/previous-searches/previous-searches.component';
 import { SearchPointComponent } from './components/search-bar/previous-searches/search-point/search-point.component';
-import { AlphabetSearchComponent } from './components/alphabet-search/alphabet-search.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AlphabetSearchComponent } from './components/alphabet-search/alphabet-s
     PreviousSearchesComponent,
     SearchPointComponent,
     AlphabetSearchComponent,
+    LetterComponent,
   ],
   imports: [
     CommonModule,
