@@ -41,7 +41,6 @@ export class HeroInfoComponent extends BaseComponent implements OnInit {
       )
       .subscribe((hero: Hero) => {
         this.hero = hero;
-        console.log(hero);
         this._cdr.markForCheck();
       });
   }

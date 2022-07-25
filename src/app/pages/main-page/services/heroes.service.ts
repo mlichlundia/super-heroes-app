@@ -28,7 +28,7 @@ export class HeroesService {
       .get<Hero>(
         `${environment.dataBase}/heroes.json?orderBy="id"&equalTo=${id}`
       )
-      .pipe(map((res) => Object.values(res)[0]));
+      .pipe(map((res: Hero): Hero => Object.values(res)[0]));
   }
 
   public clearPrevSearches(): void {
