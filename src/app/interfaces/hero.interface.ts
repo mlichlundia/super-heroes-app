@@ -10,7 +10,7 @@ export interface Hero {
   work: Record<string, string>;
 }
 
-interface Appearence {
+export interface Appearence {
   eyeColor: string;
   gender: string;
   hairColor: string;
@@ -19,7 +19,7 @@ interface Appearence {
   weight: string[];
 }
 
-interface Biography {
+export interface Biography {
   aliases: string[];
   alignment: string;
   alterEgos: string;

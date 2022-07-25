@@ -1,0 +1,72 @@
+<div *ngIf="hero; else loading">
+
+  <img [src]="hero?.images?.['lg']" [alt]="hero?.name">
+
+  <div class="hero__info">
+
+    <h2>{{ hero?.name }}</h2>
+
+    <div class="cell">
+      <h4>appearence</h4>
+      <ul class="properties">
+        <li><span>race:</span>{{ hero.appearance.race }}</li>
+        <li><span>gender:</span>{{ hero.appearance.gender }}</li>
+        <li><span>height:</span>{{ hero.appearance.height[0] }}</li>
+        <li><span>weight:</span>{{ hero.appearance.weight[0] }}</li>
+        <li><span>eyeColor:</span>{{ hero.appearance.eyeColor }}</li>
+        <li><span>hairColor:</span>{{ hero.appearance.hairColor }}</li>
+      </ul>
+    </div>
+    <div class="cell">
+      <h4>power</h4>
+      <ul class="properties">
+        <li *ngFor="let power of getProperties('powerstats')">
+          <span>
+            {{ power }}:
+          </span>
+          {{ hero.powerstats[power] }}
+        </li>
+      </ul>
+    </div>
+    <div class="cell">
+      <h4>biography</h4>
+      <ul class="properties">
+        <li><span>aliases:</span>{{ hero.biography.aliases }}</li>
+        <li><span>alignment:</span>{{ hero.biography.alignment }}</li>
+        <li><span>alter egos:</span>{{ hero.biography.alterEgos }}</li>
+        <li><span>firsta appearance:</span>{{ hero.biography.firstAppearance }}
+        </li>
+        <li><span>full name:</span>{{ hero.biography.fullName }}</li>
+        <li><span>place of birth:</span>{{ hero.biography.placeOfBirth }}</li>
+        <li><span>publisher:</span>{{ hero.biography.publisher }}</li>
+      </ul>
+    </div>
+    <div class="cell">
+      <h4>work</h4>
+      <ul class="properties">
+        <li *ngFor="let workProp of getProperties('work')">
+          <span>
+            {{ workProp }}:
+          </span>
+          {{ hero.work[workProp] }}
+        </li>
+      </ul>
+    </div>
+    <div class="cell">
+      <h4>connections</h4>
+      <ul class="properties">
+        <li *ngFor="let connect of getProperties('connections')">
+          <span>
+            {{ connect }}:
+          </span>
+          {{ hero.connections[connect] }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <p>loading...</p>
+</ng-template>

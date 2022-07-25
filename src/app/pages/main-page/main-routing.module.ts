@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/auth.guard';
 import { MainPageComponent } from './main-page.component';
+import { HeroInfoComponent } from './pages/hero-info/hero-info.component';
 import { SelectionPageComponent } from './pages/selection-page/selection-page.component';
 import { UserInfoComponent } from './pages/user-info/user-info.component';
 
@@ -19,6 +20,11 @@ const routes: Routes = [
       {
         path: 'heroes-list',
         component: SelectionPageComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'hero/:id',
+        component: HeroInfoComponent,
         canActivate: [AuthGuard],
       },
     ],

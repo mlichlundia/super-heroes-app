@@ -14,7 +14,8 @@
       <button class="button_sec" [disabled]="isMyHero"
         (click)="selectHero()">select
       </button>
-      <button class="button">view hero</button>
+      <button [routerLink]="['/home', 'hero', hero.id]" class="button">view
+        hero</button>
 
     </div>
   </div>

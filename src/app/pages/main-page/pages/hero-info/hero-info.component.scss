@@ -1,0 +1,43 @@
+@use "../../../../../styles/main.scss" as *;
+
+:host > div {
+  position: relative;
+  margin: rem(16) 0;
+  padding: rem(24);
+  background: color(light);
+  border-radius: rem(6);
+  display: flex;
+
+  img {
+    width: rem(300);
+    height: rem(420);
+    margin: 0 rem(16) 0 0;
+    border-radius: rem(4);
+  }
+
+  h2 {
+    margin: 0 0 rem(16);
+  }
+
+  h4 {
+    margin: 0 0 rem(8);
+  }
+
+  ul {
+    margin: 0 0 rem(16);
+  }
+
+  li {
+    margin: rem(2) 0;
+
+    span {
+      margin: 0 rem(8) 0 0;
+      font-weight: 800;
+      color: color(primary);
+    }
+  }
+}
+
+.cell {
+  margin: rem(24) 0;
+}
