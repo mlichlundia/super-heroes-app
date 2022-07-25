@@ -10,8 +10,10 @@
   <tbody>
     <tr *ngFor="let battle of battles">
       <td>{{ battle.date | date: 'short' }}</td>
-      <td>{{ battle.hero }}</td>
-      <td>{{ battle.enemy }}</td>
+      <td [routerLink]="['/home', 'hero', battle.hero.id]">{{ battle.hero.name
+        }}</td>
+      <td [routerLink]="['/home', 'hero', battle.enemy.id]">{{ battle.enemy.name
+        }}</td>
       <td>{{ battle.status | uppercase }}</td>
     </tr>
   </tbody>

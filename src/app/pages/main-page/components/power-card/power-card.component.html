@@ -1,0 +1,14 @@
+<div class="power__container" [class.disabled]="power.isSpent">
+  <img [src]="power.image" alt="power">
+  <div class="power__info">
+    <div class="power__descpirtion">
+      <h3>{{ power.title }}</h3>
+      <p>
+        <span>{{ power.powerStatsName | titlecase }}:</span>{{
+        power.powerStatsValue }}
+      </p>
+      <p>
+        <span>Uses left:</span>{{ power.usesLeft }}
+      </p>
+    </div>
+  </div>

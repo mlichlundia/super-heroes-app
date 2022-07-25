@@ -1,6 +1,8 @@
+import { Hero } from './hero.interface';
+
 export interface Battle {
   date: Date;
-  hero: string;
-  enemy: string;
+  hero: Hero;
+  enemy: Hero;
   status: string;
 }

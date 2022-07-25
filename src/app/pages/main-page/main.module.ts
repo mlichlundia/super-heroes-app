@@ -15,6 +15,8 @@ import { SearchPointComponent } from './components/search-bar/previous-searches/
 import { HeroesListComponent } from './pages/user-info/tabs/heroes-list/heroes-list.component';
 import { HistoryComponent } from './pages/user-info/tabs/history/history.component';
 import { PowerUpsComponent } from './pages/user-info/tabs/power-ups/power-ups.component';
+import { PowerCardComponent } from './components/power-card/power-card.component';
+import { HeroInfoComponent } from './pages/hero-info/hero-info.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { PowerUpsComponent } from './pages/user-info/tabs/power-ups/power-ups.co
     PowerUpsComponent,
     AlphabetSearchComponent,
     LetterComponent,
+    PowerCardComponent,
+    HeroInfoComponent,
   ],
   imports: [
     CommonModule,
