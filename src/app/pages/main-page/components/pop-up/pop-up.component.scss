@@ -1,0 +1,30 @@
+@use "../../../../../styles/main.scss" as *;
+
+.pop-up {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: all;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(rem(8));
+  display: flex;
+  transition: 0.3s;
+}
+
+.pop-up__content {
+  width: 32rem;
+}
+
+h2 {
+  margin: 0 0 rem(8);
+}
+
+button {
+  margin: rem(16) 0 0;
+}

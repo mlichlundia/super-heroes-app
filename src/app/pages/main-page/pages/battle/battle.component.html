@@ -1,0 +1,66 @@
+<div class="hero__container container">
+  <a [routerLink]="['/home', 'hero', hero.id]">
+    <img [src]="hero.images['lg']" [alt]="hero.name">
+  </a>
+  <div class="hero__info">
+    <h2>{{ hero.name }}</h2>
+    <ul class="hero__power">
+      <li *ngFor="let power of heroPower">
+        <span>{{ power }}:</span>
+        {{ hero.powerstats[power] }}
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="battle__container container">
+  <h2>{{ hero.name }}</h2>
+  <h4>vs</h4>
+  <h2>{{ enemy.name }}</h2>
+  <button class="button" (click)="submit()">Start</button>
+  <ul class="power">
+    <li *ngFor="let power of powerUps;" (click)="select(power)"
+      [class.selected]="selected?.includes(power)">
+      <p>
+        <span>{{ power.title }}: </span>
+        {{ power.usesLeft }} left
+      </p>
+    </li>
+  </ul>
+</div>
+<div class="hero__container container">
+  <a [routerLink]="['/home', 'hero', enemy.id]">
+    <img [src]="enemy.images['lg']" [alt]="enemy.name">
+  </a>
+  <div class="hero__info">
+    <h2>{{ enemy.name }}</h2>
+    <ul class="hero__power">
+      <li *ngFor="let power of heroPower">
+        <span>{{ power }}:</span>
+        {{ enemy.powerstats[power] }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<app-preloader *ngIf="isFighting"></app-preloader>
+
+<app-pop-up *ngIf="showResult" (close)="showResult = $event">
+  <ul>
+    <li>
+      <span>Date: </span>
+      {{ battleResult?.date | date:'medium' }}
+    </li>
+    <li>
+      <span>Hero: </span>
+      {{ battleResult?.hero?.name }}
+    </li>
+    <li>
+      <span>Enemy: </span>
+      {{ battleResult?.enemy?.name }}
+    </li>
+    <li>
+      <span>Result: </span>
+      {{ battleResult?.status }}
+    </li>
+  </ul>
+</app-pop-up>

@@ -12,7 +12,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchBarComponent {
-  @Output() public submit = new EventEmitter<string>();
+  @Output() public submit: EventEmitter<string> = new EventEmitter<string>();
 
   public searchValue: string = '';
   public isValidSearch: boolean = false;

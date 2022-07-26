@@ -1,10 +1,10 @@
-export const BASE_URL_SIGNIN =
+export const BASE_URL_SIGNIN: string =
   'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
-export const BASE_URL_SIGNUP =
+export const BASE_URL_SIGNUP: string =
   'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
-export const BASE_URL_GET_USER =
+export const BASE_URL_GET_USER: string =
   'https://identitytoolkit.googleapis.com/v1/accounts:createAuthUri?key=';
-export const USER_PATTERN = '[a-zA-Z -]*';
-export const INVALID_EMAIL = 'INVALID_EMAIL';
-export const INVALID_PASSWORD = 'INVALID_PASSWORD';
-export const EMAIL_NOT_FOUND = 'EMAIL_NOT_FOUND';
+export const USER_PATTERN: string = '[a-zA-Z -]*';
+export const INVALID_EMAIL: string = 'INVALID_EMAIL';
+export const INVALID_PASSWORD: string = 'INVALID_PASSWORD';
+export const EMAIL_NOT_FOUND: string = 'EMAIL_NOT_FOUND';

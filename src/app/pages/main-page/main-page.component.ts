@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
+import { Router } from '@angular/router';
+import { Hero } from 'src/app/interfaces/hero.interface';
+import { PowerUpsService } from './services/power-ups.service';
 
 @Component({
   selector: 'app-main-page',
@@ -6,4 +14,33 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./main-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainPageComponent {}
+export class MainPageComponent implements OnInit {
+  public preventFight: boolean = false;
+
+  constructor(
+    private _powerService: PowerUpsService,
+    private _router: Router,
+    private _cdr: ChangeDetectorRef
+  ) {}
+
+  public ngOnInit(): void {
+    this._powerService.setPower();
+  }
+
+  public openBattle(): void {
+    const heroes: Hero[] = localStorage.getItem('my-heroes')
+      ? JSON.parse(localStorage.getItem('my-heroes')!)
+      : [];
+
+    if (heroes.length > 1) {
+      this._router.navigate(['/home', 'battle']);
+    } else {
+      this.preventFight = true;
+
+      setTimeout(() => {
+        this.preventFight = false;
+        this._cdr.markForCheck();
+      }, 3500);
+    }
+  }
+}

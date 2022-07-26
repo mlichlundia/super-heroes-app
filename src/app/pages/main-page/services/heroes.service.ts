@@ -11,16 +11,18 @@ export class HeroesService {
   constructor(private _http: HttpClient) {}
 
   public getHeroes(value: string): Observable<Hero[]> {
-    const heroName = value
+    const heroName: string = value
       .split(' ')
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .map(
+        (word: string): string => word.charAt(0).toUpperCase() + word.slice(1)
+      )
       .join(' ');
 
     return this._http
       .get<Hero[]>(
         `${environment.dataBase}/heroes.json?orderBy="name"&startAt="${heroName}"&endAt="${heroName}\uf8ff"`
       )
-      .pipe(map((res) => Object.values(res)));
+      .pipe(map((res: Record<number, Hero>): Hero[] => Object.values(res)));
   }
 
   public getById(id: string): Observable<Hero> {

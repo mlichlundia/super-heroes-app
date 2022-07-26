@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -13,6 +14,7 @@ import { USER_PATTERN } from 'src/app/constants';
 import { Router } from '@angular/router';
 import { BaseComponent } from 'src/app/directives/base-component.directive';
 import { takeUntil } from 'rxjs';
+import { ServerAuthResponse } from 'src/app/interfaces/server-response.interface';
 
 @Component({
   selector: 'app-sign-up',
@@ -81,17 +83,17 @@ export class SignUpComponent extends BaseComponent implements OnInit {
     this._auth
       .signup(this.form.value)
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe((res) => {
+      .subscribe((res: ServerAuthResponse | null): void => {
         console.log(res);
-        this._router.navigate(['/home', '']);
+        this._router.navigate(['/home']);
       });
     this.form.reset();
   }
 
   public checkCoincidence(): void {
-    const username = this.form.get('username')?.value;
-    const email = this.form.get('email')?.value;
-    const passwordControl = this.form.controls['password'];
+    const username: string = this.form.get('username')?.value;
+    const email: string = this.form.get('email')?.value;
+    const passwordControl: AbstractControl = this.form.controls['password'];
 
     passwordControl.addValidators([PasswordValidator.notSame(username, email)]);
   }

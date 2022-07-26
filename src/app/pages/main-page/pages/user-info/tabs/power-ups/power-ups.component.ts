@@ -18,11 +18,11 @@ export class PowerUpsComponent implements OnInit {
   }
 
   public getPower(): void {
-    const power = this._powerService.getPower();
+    const power: Power[] = this._powerService.getPower();
 
     this.powerUps = [
-      ...power.filter((item) => !item.isSpent),
-      ...power.filter((item) => item.isSpent),
+      ...power.filter((item): boolean => !item.isSpent),
+      ...power.filter((item): boolean => !!item.isSpent),
     ];
   }
 }

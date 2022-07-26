@@ -15,8 +15,8 @@ import { AuthService } from './services/auth.service';
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class LoginPageComponent implements OnInit {
-  public isNew = false;
-  public message = '';
+  public isNew: boolean = false;
+  public message: string = '';
 
   constructor(public auth: AuthService, private _route: ActivatedRoute) {}
 
@@ -25,7 +25,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   public checkSessionStatus(): void {
-    this._route.queryParams.subscribe((params: Params) => {
+    this._route.queryParams.subscribe((params: Params): void => {
       if (params['loginAgain']) {
         this.message =
           'Your current session has expired. Please login again to continue using this app';

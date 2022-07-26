@@ -2,11 +2,15 @@ import { FormControl } from '@angular/forms';
 
 export class UserValidator {
   static usernameFormat(control: FormControl): Record<string, boolean> | null {
-    const username = control.value.trim();
+    if (!control.value) {
+      return null;
+    }
 
-    let isValid = false;
-    let usernameArr = username.split(' ');
-    let condition =
+    const username: string = control.value.trim();
+
+    let isValid: boolean = false;
+    let usernameArr: string[] = username.split(' ');
+    let condition: boolean =
       usernameArr.length !== 2 ||
       usernameArr[0].length < 1 ||
       usernameArr[1].length < 1;
@@ -16,9 +20,11 @@ export class UserValidator {
     }
 
     if (condition) {
-      usernameArr = [...username].filter((item, idx) => {
-        return idx === 0 || item === item.toUpperCase();
-      });
+      usernameArr = [...username].filter(
+        (item: string, idx: number): string | boolean => {
+          return idx === 0 || item === item.toUpperCase();
+        }
+      );
     }
 
     isValid = !!(usernameArr.length === 2);

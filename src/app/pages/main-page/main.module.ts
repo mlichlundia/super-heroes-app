@@ -17,6 +17,9 @@ import { HistoryComponent } from './pages/user-info/tabs/history/history.compone
 import { PowerUpsComponent } from './pages/user-info/tabs/power-ups/power-ups.component';
 import { PowerCardComponent } from './components/power-card/power-card.component';
 import { HeroInfoComponent } from './pages/hero-info/hero-info.component';
+import { BattleComponent } from './pages/battle/battle.component';
+import { PreloaderComponent } from './components/preloader/preloader.component';
+import { PopUpComponent } from './components/pop-up/pop-up.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import { HeroInfoComponent } from './pages/hero-info/hero-info.component';
     LetterComponent,
     PowerCardComponent,
     HeroInfoComponent,
+    BattleComponent,
+    PreloaderComponent,
+    PopUpComponent,
   ],
   imports: [
     CommonModule,

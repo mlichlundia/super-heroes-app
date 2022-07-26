@@ -14,12 +14,11 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LetterComponent {
-  @Input() letter!: string;
-  @Output() searchByLetter = new EventEmitter<string>();
+  @Input() public letter!: string;
+  @Output() public searchByLetter: EventEmitter<string> =
+    new EventEmitter<string>();
 
-  constructor() {}
-
-  public search() {
+  public search(): void {
     this.searchByLetter.emit(this.letter);
   }
 }

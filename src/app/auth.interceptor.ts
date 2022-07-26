@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { AuthService } from './pages/login-page/services/auth.service';
 
 @Injectable()
@@ -23,9 +23,8 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     return next.handle(req).pipe(
-      tap(() => console.log('intersept')),
       catchError((error: HttpErrorResponse) => {
-        console.log('[Interseptor error]: ', error);
+        console.error('[Interseptor error]: ', error);
 
         if (error.status === 401) {
           this._auth.logout();

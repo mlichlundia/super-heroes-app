@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { switchMap, takeUntil, tap } from 'rxjs';
+import { Observable, switchMap, takeUntil, tap } from 'rxjs';
 import { BaseComponent } from 'src/app/directives/base-component.directive';
 import { Hero } from 'src/app/interfaces/hero.interface';
 import { HeroesService } from '../../services/heroes.service';
@@ -34,7 +34,7 @@ export class HeroInfoComponent extends BaseComponent implements OnInit {
   public getHero(): void {
     this._route.params
       .pipe(
-        switchMap((params: Params) => {
+        switchMap((params: Params): Observable<Hero> => {
           return this._heroesService.getById(params['id']);
         }),
         takeUntil(this.componentDestroyed$)

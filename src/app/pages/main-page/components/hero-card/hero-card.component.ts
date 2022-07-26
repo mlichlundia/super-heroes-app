@@ -15,7 +15,7 @@ import { Hero } from 'src/app/interfaces/hero.interface';
 export class HeroCardComponent implements OnInit {
   @Input() public hero!: Hero;
 
-  public isMyHero = false;
+  public isMyHero: boolean = false;
   public heroStorage: Hero[] = JSON.parse(localStorage.getItem('my-heroes')!);
 
   public ngOnInit(): void {
@@ -28,7 +28,7 @@ export class HeroCardComponent implements OnInit {
 
   public checkIsMyHero(): void {
     this.isMyHero = !!this.heroStorage?.find(
-      (item) => item.name === this.hero.name
+      (item: Hero): boolean => item.name === this.hero.name
     );
   }
 

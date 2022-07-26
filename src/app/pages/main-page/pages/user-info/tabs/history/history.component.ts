@@ -7,7 +7,7 @@ import { Battle } from 'src/app/interfaces/battle.interface';
   styleUrls: ['./history.component.scss'],
 })
 export class HistoryComponent implements OnInit {
-  public columns = [
+  public columns: string[] = [
     'Battle date and time',
     'Hero name',
     'Opponent name',
@@ -17,58 +17,45 @@ export class HistoryComponent implements OnInit {
 
   public ngOnInit(): void {
     this._setBattles();
-    console.log(this.battles);
   }
 
-  private _setBattles() {
+  private _setBattles(): void {
     this.battles = JSON.parse(localStorage.getItem('battles')!);
   }
 
   public sortByData(): void {
     this.battles = this.battles!.sort(
-      (a, b) => new Date(a.date).getDate() - new Date(b.date).getDate()
+      (a, b): number => new Date(a.date).getTime() - new Date(b.date).getTime()
     );
 
     localStorage.setItem('battles', JSON.stringify(this.battles));
   }
 
   public sortByHero(): void {
-    this.battles = this.battles!.sort((a, b) => {
-      if (a.hero < b.hero) {
-        return -1;
-      }
-
-      if (a.hero > b.hero) {
-        return 1;
-      }
-
-      return 0;
-    });
+    this.battles = this.battles!.sort((a, b): number =>
+      a.hero.name.localeCompare(b.hero.name)
+    );
 
     localStorage.setItem('battles', JSON.stringify(this.battles));
   }
 
   public sortByEnemy(): void {
-    this.battles = this.battles!.sort((a, b) => {
-      if (a.enemy < b.enemy) {
-        return -1;
-      }
-
-      if (a.enemy > b.enemy) {
-        return 1;
-      }
-
-      return 0;
-    });
+    this.battles = this.battles!.sort((a, b): number =>
+      a.enemy.name.localeCompare(b.enemy.name)
+    );
 
     localStorage.setItem('battles', JSON.stringify(this.battles));
   }
 
-  public sortByState() {
+  public sortByState(): void {
     this.battles = [
-      ...this.battles!.filter((item) => item.status === 'won'),
-      ...this.battles!.filter((item) => item.status === 'lost'),
-      ...this.battles!.filter((item) => item.status === 'draw'),
+      ...this.battles!.filter((item: Battle): boolean => item.status === 'won'),
+      ...this.battles!.filter(
+        (item: Battle): boolean => item.status === 'lost'
+      ),
+      ...this.battles!.filter(
+        (item: Battle): boolean => item.status === 'draw'
+      ),
     ];
 
     localStorage.setItem('battles', JSON.stringify(this.battles));

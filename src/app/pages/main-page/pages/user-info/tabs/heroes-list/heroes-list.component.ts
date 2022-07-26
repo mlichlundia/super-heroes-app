@@ -19,7 +19,7 @@ export class HeroesListComponent implements OnInit {
     this.heroes = JSON.parse(localStorage.getItem('my-heroes')!);
   }
 
-  private _setSelected() {
+  private _setSelected(): void {
     this.selected = this.heroes ? this.heroes[this.heroes.length - 1] : null;
   }
 }

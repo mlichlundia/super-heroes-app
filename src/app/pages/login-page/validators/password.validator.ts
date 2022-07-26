@@ -13,13 +13,13 @@ export class PasswordValidator {
       return null;
     }
 
-    const capitalLetters = control.value
+    const capitalLetters: string[] = control.value
       .split('')
       .filter(
-        (symbol: string) =>
+        (symbol: string): boolean =>
           !!(symbol.charCodeAt(0) > 64 && symbol.charCodeAt(0) < 91)
       );
-    const isValid = !!capitalLetters.length;
+    const isValid: boolean = !!capitalLetters.length;
 
     return isValid ? null : { containCapitalLetter: true };
   }
@@ -31,12 +31,13 @@ export class PasswordValidator {
       return null;
     }
 
-    const numbers = control.value
+    const numbers: number[] = control.value
       .split('')
       .filter(
-        (num: string) => !!(num.charCodeAt(0) > 47 && num.charCodeAt(0) < 58)
+        (num: string): boolean =>
+          !!(num.charCodeAt(0) > 47 && num.charCodeAt(0) < 58)
       );
-    const isValid = !!numbers.length;
+    const isValid: boolean = !!numbers.length;
 
     return isValid ? null : { allowedOneNumber: true };
   }
@@ -48,10 +49,10 @@ export class PasswordValidator {
       return null;
     }
 
-    let isValid = false;
+    let isValid: boolean = false;
 
-    const symbols = ['$', '%', '.', '&', '!'];
-    const validSymbols = symbols.filter((item) => {
+    const symbols: string[] = ['$', '%', '.', '&', '!'];
+    const validSymbols: string[] = symbols.filter((item: string): boolean => {
       return [...control.value].includes(item);
     });
 
@@ -66,7 +67,7 @@ export class PasswordValidator {
         return null;
       }
 
-      const coincidence =
+      const coincidence: boolean =
         control.value.indexOf(username) === -1 &&
         control.value.indexOf(email) === -1;
 
