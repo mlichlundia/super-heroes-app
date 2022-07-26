@@ -2,6 +2,10 @@ import { FormControl } from '@angular/forms';
 
 export class UserValidator {
   static usernameFormat(control: FormControl): Record<string, boolean> | null {
+    if (!control.value) {
+      return null;
+    }
+
     const username: string = control.value.trim();
 
     let isValid: boolean = false;

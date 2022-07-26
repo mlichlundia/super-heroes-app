@@ -9,6 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/app/directives/base-component.directive';
+import { ServerAuthResponse } from 'src/app/interfaces/server-response.interface';
 import { AuthService } from '../../services/auth.service';
 import { EmailValidator } from '../../validators/email.validator';
 import { PasswordValidator } from '../../validators/password.validator';
@@ -68,7 +69,7 @@ export class SignInComponent extends BaseComponent implements OnInit {
     this._auth
       .signin(this.form.value)
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe((res: unknown): void => {
+      .subscribe((res: ServerAuthResponse): void => {
         console.log(res);
         this._router.navigate(['/home']);
       });
