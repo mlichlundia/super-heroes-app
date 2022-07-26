@@ -7,6 +7,7 @@
 }
 
 header {
+  position: relative;
   padding: rem(16) rem(24);
   background: color(light);
   display: flex;
@@ -18,5 +19,34 @@ header {
 }
 
 main {
-  padding: rem(48) rem(120);
+  padding: rem(48) rem(24);
+
+  @media screen and (min-width: get-breakpoint(l)) {
+    margin: rem(48) rem(120);
+  }
+
+  @media screen and (min-width: get-breakpoint(xl)) {
+    margin: rem(48) rem(240);
+  }
+
+  @media screen and (min-width: get-breakpoint(xxl)) {
+    margin: rem(48) rem(400);
+  }
+}
+
+.button_center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.error-notificaton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: color(error);
+  background: rgb(252, 230, 230);
+  z-index: 1000;
 }

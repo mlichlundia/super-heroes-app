@@ -14,11 +14,17 @@
   </div>
   <nav>
     <ul>
-      <li><a routerLink="/home/user-info">user info</a></li>
+      <li class="button_center"><a class="button"
+          (click)="openBattle()">Fight</a>
+      </li>
+      <li><a routerLink="/home/user-info">User info</a></li>
     </ul>
   </nav>
 </header>
 
 <main>
+  <div class="container error-notificaton" *ngIf="preventFight">
+    <p>You don't have enough heroes to fight</p>
+  </div>
   <router-outlet></router-outlet>
 </main>
