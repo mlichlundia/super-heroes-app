@@ -20,7 +20,7 @@ export class PowerUpsService {
       powerStatsName: 'power',
       powerStatsValue: '10',
       usesLeft: 5,
-      image: 'https://i.dlpng.com/static/png/6783321_preview.png',
+      image: 'https://www.dystryktzero.pl/images/detailed/44/x_hasc1881.jpg',
       isSpent: false,
     },
     {
@@ -61,11 +61,7 @@ export class PowerUpsService {
     },
   ];
 
-  constructor() {
-    this._setPower();
-  }
-
-  private _setPower(): void {
+  public setPower(): void {
     localStorage.setItem('power-ups', JSON.stringify(this._powerUps));
   }
 
