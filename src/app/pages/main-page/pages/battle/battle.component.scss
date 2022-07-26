@@ -1,0 +1,70 @@
+@use "../../../../../styles/main.scss" as *;
+
+:host {
+  display: flex;
+
+  > :nth-child(2n) {
+    margin: 0 rem(12);
+  }
+}
+
+.container {
+  width: calc(100% / 3);
+}
+
+img {
+  width: rem(400);
+  border-radius: rem(8);
+  transition: 0.25s;
+
+  &:hover {
+    box-shadow: 0 0 rem(16) rgba(0, 0, 0, 0.4);
+    transform: scale(1.0125);
+  }
+}
+
+h2 {
+  margin: rem(16) 0 0;
+}
+
+.battle__container {
+  h2,
+  h4 {
+    text-align: center;
+    margin: 0;
+  }
+
+  > :first-child {
+    color: color(primary);
+  }
+
+  > :nth-child(3n) {
+    color: color(error);
+  }
+
+  button {
+    margin: rem(12) auto;
+  }
+
+  ul {
+    margin: rem(16) 0 0;
+  }
+
+  li {
+    cursor: pointer;
+  }
+
+  .selected span {
+    color: color(warning);
+  }
+}
+
+span {
+  font-weight: 700;
+  color: color(primary);
+  transition: 0.25s;
+}
+
+li {
+  margin: rem(4);
+}
