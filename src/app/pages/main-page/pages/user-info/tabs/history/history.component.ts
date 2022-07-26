@@ -17,7 +17,6 @@ export class HistoryComponent implements OnInit {
 
   public ngOnInit(): void {
     this._setBattles();
-    console.log(this.battles);
   }
 
   private _setBattles() {
@@ -26,40 +25,24 @@ export class HistoryComponent implements OnInit {
 
   public sortByData(): void {
     this.battles = this.battles!.sort(
-      (a, b) => new Date(a.date).getDate() - new Date(b.date).getDate()
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
     );
 
     localStorage.setItem('battles', JSON.stringify(this.battles));
   }
 
   public sortByHero(): void {
-    this.battles = this.battles!.sort((a, b) => {
-      if (a.hero < b.hero) {
-        return -1;
-      }
-
-      if (a.hero > b.hero) {
-        return 1;
-      }
-
-      return 0;
-    });
+    this.battles = this.battles!.sort((a, b) =>
+      a.hero.name.localeCompare(b.hero.name)
+    );
 
     localStorage.setItem('battles', JSON.stringify(this.battles));
   }
 
   public sortByEnemy(): void {
-    this.battles = this.battles!.sort((a, b) => {
-      if (a.enemy < b.enemy) {
-        return -1;
-      }
-
-      if (a.enemy > b.enemy) {
-        return 1;
-      }
-
-      return 0;
-    });
+    this.battles = this.battles!.sort((a, b) =>
+      a.enemy.name.localeCompare(b.enemy.name)
+    );
 
     localStorage.setItem('battles', JSON.stringify(this.battles));
   }
