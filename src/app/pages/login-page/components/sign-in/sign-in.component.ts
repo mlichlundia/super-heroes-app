@@ -68,7 +68,7 @@ export class SignInComponent extends BaseComponent implements OnInit {
     this._auth
       .signin(this.form.value)
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe((res) => {
+      .subscribe((res: unknown): void => {
         console.log(res);
         this._router.navigate(['/home']);
       });

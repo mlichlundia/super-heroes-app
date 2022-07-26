@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Power } from 'src/app/interfaces/power.interface';
 
 @Component({
@@ -12,10 +7,6 @@ import { Power } from 'src/app/interfaces/power.interface';
   styleUrls: ['./power-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PowerCardComponent implements OnInit {
+export class PowerCardComponent {
   @Input() public power!: Power;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

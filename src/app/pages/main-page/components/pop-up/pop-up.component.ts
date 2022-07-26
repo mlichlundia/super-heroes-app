@@ -15,6 +15,6 @@ export class PopUpComponent {
   @Output() public close: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public closePopUp(): void {
-    this.close.emit(false);
+    this.close.emit();
   }
 }

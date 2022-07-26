@@ -17,12 +17,12 @@ export class EmailValidator {
       return null;
     }
 
-    let isValid = false;
+    let isValid: boolean = false;
 
-    const lastIndex = control.value.indexOf('@');
-    const toCheck = control.value.slice(0, lastIndex);
+    const lastIndex: number = control.value.indexOf('@');
+    const toCheck: string = control.value.slice(0, lastIndex);
     const dottCount: string[] = [...toCheck].filter(
-      (item: string) => item === '.'
+      (item: string): boolean => item === '.'
     );
 
     isValid = !(dottCount.length > 3);
@@ -35,10 +35,10 @@ export class EmailValidator {
       return null;
     }
 
-    let isValid = false;
+    let isValid: boolean = false;
 
-    const domains = ['.com', '.net', '.org', '.co', '.us'];
-    const validDomain = domains.filter((item) => {
+    const domains: string[] = ['.com', '.net', '.org', '.co', '.us'];
+    const validDomain: string[] = domains.filter((item: string): boolean => {
       return control.value.endsWith(item);
     });
 
@@ -56,8 +56,8 @@ export class EmailValidator {
 
     let isValid = false;
 
-    const firstIndex = control.value.indexOf('@');
-    const toCheck = control.value.slice(firstIndex);
+    const firstIndex: number = control.value.indexOf('@');
+    const toCheck: string = control.value.slice(firstIndex);
 
     isValid = !(toCheck.length > 5);
 
@@ -71,7 +71,7 @@ export class EmailValidator {
         continueUri: 'http://localhost:4200/',
       })
       .pipe(
-        map((res) => {
+        map((res): Record<string, boolean> | null => {
           return res.registered ? { isUnique: true } : null;
         })
       );

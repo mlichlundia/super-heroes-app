@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -81,7 +82,7 @@ export class SignUpComponent extends BaseComponent implements OnInit {
     this._auth
       .signup(this.form.value)
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe((res) => {
+      .subscribe((res: unknown): void => {
         console.log(res);
         this._router.navigate(['/home', '']);
       });
@@ -89,9 +90,9 @@ export class SignUpComponent extends BaseComponent implements OnInit {
   }
 
   public checkCoincidence(): void {
-    const username = this.form.get('username')?.value;
-    const email = this.form.get('email')?.value;
-    const passwordControl = this.form.controls['password'];
+    const username: string = this.form.get('username')?.value;
+    const email: string = this.form.get('email')?.value;
+    const passwordControl: AbstractControl = this.form.controls['password'];
 
     passwordControl.addValidators([PasswordValidator.notSame(username, email)]);
   }

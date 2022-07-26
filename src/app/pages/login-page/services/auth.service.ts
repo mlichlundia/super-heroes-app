@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   public get token(): string | null {
-    const expDate = new Date(localStorage.getItem('token-exp')!);
+    const expDate: Date = new Date(localStorage.getItem('token-exp')!);
 
     if (expDate < new Date()) {
       this.logout();
@@ -60,7 +60,9 @@ export class AuthService {
 
   private setToken(res: ServerAuthResponse | null): void {
     if (res) {
-      const expDate = new Date(new Date().getTime() + +res.expiresIn * 1000);
+      const expDate: Date = new Date(
+        new Date().getTime() + +res.expiresIn * 1000
+      );
 
       localStorage.setItem('token', res.idToken);
       localStorage.setItem('token-exp', expDate.toString());

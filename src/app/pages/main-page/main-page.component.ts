@@ -5,6 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { Hero } from 'src/app/interfaces/hero.interface';
 import { PowerUpsService } from './services/power-ups.service';
 
 @Component({
@@ -27,7 +28,7 @@ export class MainPageComponent implements OnInit {
   }
 
   public openBattle(): void {
-    const heroes = localStorage.getItem('my-heroes')
+    const heroes: Hero[] = localStorage.getItem('my-heroes')
       ? JSON.parse(localStorage.getItem('my-heroes')!)
       : [];
 

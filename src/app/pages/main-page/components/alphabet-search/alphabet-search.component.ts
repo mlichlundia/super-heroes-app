@@ -14,7 +14,7 @@ import {
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class AlphabetSearchComponent {
-  public letters = [
+  public letters: string[] = [
     'a',
     'b',
     'c',
@@ -42,22 +42,21 @@ export class AlphabetSearchComponent {
     'y',
     'z',
   ];
-  public currentLetter = 'a';
-  public isOpen = false;
+  public currentLetter: string = 'a';
+  public isOpen: boolean = false;
 
-  @Output() searchByLetter = new EventEmitter<string>();
+  @Output() public searchByLetter: EventEmitter<string> =
+    new EventEmitter<string>();
 
-  constructor() {}
-
-  public changeLetter(letter: string) {
+  public changeLetter(letter: string): void {
     this.currentLetter = letter;
   }
 
-  public toggle() {
+  public toggle(): void {
     this.isOpen = !this.isOpen;
   }
 
-  public search(letter: string) {
+  public search(letter: string): void {
     this.changeLetter(letter);
     this.toggle();
     this.searchByLetter.emit(letter);

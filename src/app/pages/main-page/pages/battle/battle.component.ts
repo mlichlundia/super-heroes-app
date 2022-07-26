@@ -24,12 +24,12 @@ export class BattleComponent implements OnInit {
   public enemy!: Hero;
   public battleResult!: Battle;
   public selected!: Power[];
-  public isFighting = false;
+  public isFighting: boolean = false;
   public showResult: boolean = false;
 
   constructor(private _crd: ChangeDetectorRef) {}
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.initHeroes();
   }
 
@@ -38,8 +38,8 @@ export class BattleComponent implements OnInit {
       return;
     }
 
-    let enemyList = [];
-    let randomIndex = 0;
+    let enemyList: Hero[] = [];
+    let randomIndex: number = 0;
 
     enemyList = this.myHeroes.slice(0, -1);
     randomIndex = this.getRandom(enemyList.length);
@@ -50,7 +50,9 @@ export class BattleComponent implements OnInit {
 
   public select(power: Power): void {
     if (this.selected && this.selected?.includes(power)) {
-      this.selected = this.selected.filter((item) => item !== power);
+      this.selected = this.selected.filter(
+        (item: Power): boolean => item !== power
+      );
       this.updateHeroPower(power, false);
       this.updatePower(power, false);
       return;
@@ -62,8 +64,8 @@ export class BattleComponent implements OnInit {
   }
 
   public updateHeroPower(power: Power, sum: boolean): void {
-    const toChange = power.powerStatsName;
-    const changeValue = +power.powerStatsValue;
+    const toChange: string = power.powerStatsName;
+    const changeValue: number = +power.powerStatsValue;
 
     this.hero.powerstats[toChange] = sum
       ? this.hero.powerstats[toChange] + changeValue
@@ -71,7 +73,7 @@ export class BattleComponent implements OnInit {
   }
 
   public updatePower(power: Power, add: boolean): void {
-    this.updatedPowerUps = this.updatedPowerUps.map((item) => {
+    this.updatedPowerUps = this.updatedPowerUps.map((item: Power): Power => {
       return item.title === power.title
         ? {
             ...item,
@@ -101,24 +103,24 @@ export class BattleComponent implements OnInit {
   }
 
   public pushToStorage(): void {
-    const battles = localStorage.getItem('battles')
+    const battles: Battle[] | null = localStorage.getItem('battles')
       ? JSON.parse(localStorage.getItem('battles')!).concat(this.battleResult)
       : [this.battleResult];
 
     localStorage.setItem('battles', JSON.stringify(battles));
   }
 
-  public setBattleResult() {
-    const heroPower = Object.values(this.hero.powerstats).reduce(
-      (sum, current) => sum + current,
+  public setBattleResult(): void {
+    const heroPower: number = Object.values(this.hero.powerstats).reduce(
+      (sum, current): number => sum + current,
       0
     );
-    const enemyPower = Object.values(this.enemy.powerstats).reduce(
+    const enemyPower: number = Object.values(this.enemy.powerstats).reduce(
       (sum, current) => sum + current,
       0
     );
 
-    let result = '';
+    let result: string = '';
 
     if (heroPower > enemyPower) {
       result = 'won';
@@ -140,7 +142,7 @@ export class BattleComponent implements OnInit {
     };
   }
 
-  public getRandom(max: number) {
+  public getRandom(max: number): number {
     return Math.floor(Math.random() * max);
   }
 
